@@ -9,9 +9,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jgr.repaso.thymeleaf</groupId>
-	<artifactId>6-RepasoThymeleafSeguridadSpring</artifactId>
+	<artifactId>6-RepasoThymeleafInterceptores</artifactId>
 	<version>1.0</version>
-	<name>6-RepasoThymeleafSeguridadSpring</name>
+	<name>6-RepasoThymeleafInterceptores</name>
 	<description>HolaMundo con Spring</description>
 	<properties>
 		<java.version>11</java.version>
