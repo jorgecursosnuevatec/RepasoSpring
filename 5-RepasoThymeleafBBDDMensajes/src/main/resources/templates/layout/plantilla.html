@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Plantilla</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:fragment="header">
+        <!-- 
+            <h1>Control de Clientes</h1>
+             -->
+             <!-- este mensaje lo coge del properties-->
+            <h1 th:text="#{plantilla.titulo}">Titulo</h1>
+        </header>
+        
+        <footer th:fragment="footer">
+            <p>Derechos Reservados
+            <!-- 
+             <a href="http://www.globalmentoring.com.mx" target="_blank">GlobalMentoring.com.mx</a>
+              -->
+              <b>Er Jorge</b>
+             </p>
+        </footer>
+        
+    </body>
+</html>
