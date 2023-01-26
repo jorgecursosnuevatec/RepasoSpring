@@ -14,13 +14,16 @@
             <h1 th:text="#{plantilla.titulo}">Titulo</h1>
         </header>
         
+        
         <footer th:fragment="footer">
-            <p>Derechos Reservados
-            <!-- 
-             <a href="http://www.globalmentoring.com.mx" target="_blank">GlobalMentoring.com.mx</a>
-              -->
+            <div>
+                <br/>
+                <a th:href="@{/(lang=es)}">ES</a> |
+                <a th:href="@{/(lang=en)}">EN</a> |
+                  <span> [[#{plantilla.pie-pagina}]]
               <b>Er Jorge</b>
-             </p>
+               </span>
+            </div>
         </footer>
         
     </body>

@@ -11,7 +11,7 @@
 	<groupId>com.jgr.repaso.thymeleaf</groupId>
 	<artifactId>5-RepasoThymeleafBBDDMensajes</artifactId>
 	<version>1.0</version>
-	<name>4-RepasoThymeleafBBDDValidation</name>
+	<name>5-RepasoThymeleafBBDDMensajes</name>
 	<description>HolaMundo con Spring</description>
 	<properties>
 		<java.version>11</java.version>
