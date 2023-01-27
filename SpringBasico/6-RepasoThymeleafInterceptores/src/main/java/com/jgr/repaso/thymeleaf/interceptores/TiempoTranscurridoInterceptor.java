@@ -5,6 +5,7 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,10 +16,11 @@ import jakarta.servlet.http.HttpServletResponse;
  * The Class TiempoTranscurridoInterceptor.
  * 
  * para ver cuanto tarda la peticion
- * como component para inyectarlo donde queramos
+ * como component para inyectarlo donde queramos,lo vamos a hacer en mvConfig,le damos
+ * un nombre para que cuando inyectemos interceptores podamos especificar
  * https://www.udemy.com/course/master-completo-java-de-cero-a-experto/learn/lecture/23731950#overview
  */
-@Component
+@Component("tiempoTranscurridoInterceptor")
 public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 	
 	private static final Logger logger = LoggerFactory.getLogger(TiempoTranscurridoInterceptor.class);
@@ -43,8 +45,16 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		logger.info("TiempoTranscurridoInterceptor preHandle entrando");
-		//return HandlerInterceptor.super.preHandle(request, response, handler);
+		
+		//si es un metodo del controlador
+		if(handler instanceof HandlerMethod) {
+			HandlerMethod metodo = (HandlerMethod) handler;
+		
+		logger.info("*****************TiempoTranscurridoInterceptor preHandle entrando desde ruta->"
+				+metodo.getMethod().getName());
+		logger.info("*****************TiempoTranscurridoInterceptor preHandle Handler->"+handler);
+		}
+		
 		//guardo el inicio
 		long tiempoInicio = System.currentTimeMillis();
 		request.setAttribute("tiempo inicio", tiempoInicio);
@@ -76,14 +86,16 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 		long tiempoInicio=(Long)request.getAttribute("tiempo inicio");		
 		long tiempoTranscurrido = tiempoFinal-tiempoInicio;
 		
-		if(modelAndView!=null) {
-			modelAndView.addObject("tiempotranscurrido", tiempoTranscurrido);			
+		if(handler instanceof HandlerMethod && modelAndView!=null) {
+//			if(modelAndView!=null) {
+			modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);			
 		}
 		
 		
-		//HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
-		logger.info("TiempoTranscurridoInterceptor postHandle saliendo");
-		logger.info("TiempoTranscurrido->"+tiempoTranscurrido);
+		HandlerMethod metodo = (HandlerMethod) handler;
+		
+		logger.info("*****************TiempoTranscurridoInterceptor postHandle saliendo->"+metodo.getMethod().getName());
+		logger.info("*****************TiempoTranscurrido->"+tiempoTranscurrido);
 		
 	}
 

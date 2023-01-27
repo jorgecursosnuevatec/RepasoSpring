@@ -1,6 +1,9 @@
 package com.jgr.repaso.thymeleaf.interceptores;
 
 import java.util.Locale;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -9,12 +12,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import com.jgr.repaso.thymeleaf.controller.ControladorPersona;
+
 /**
  * The Class ConfiguraIdioma. para gestionar el idioma
  * https://www.udemy.com/course/universidad-java-especialista-en-java-desde-cero-a-master/learn/lecture/21453402#overview
  */
 @Configuration
 public class ConfiguraIdioma implements WebMvcConfigurer {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ConfiguraIdioma.class);
 
 	/**
 	 * Locale resolver. por defecto lo ponemos en español en la pagina plantilla

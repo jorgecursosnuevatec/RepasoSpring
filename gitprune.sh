@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-01-26 676 CONTINUAR CON INTERCEPTORES https://www.udemy.com/course/master-completo-java-de-cero-a-experto/learn/lecture/23731952#overview"
+message="$(date)2023-01-27 PRIMERA SUBIDA DESDE CASA https://www.udemy.com/course/master-completo-java-de-cero-a-experto/learn/lecture/23731954#overview"
 fi
 
 start=`date +%s`

@@ -14,7 +14,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.jgr.repaso.thymeleaf.interceptores.TiempoTranscurridoInterceptor;
 import com.jgr.repaso.thymeleaf.model.Persona;
 import com.jgr.repaso.thymeleaf.servicio.IPersonaServicio;
 import com.jgr.repaso.thymeleaf.servicio.PersonaServicioImpl;
@@ -78,7 +77,7 @@ public class ControladorPersona {
 	 */
 	@GetMapping("/")
 	public String inicio(Model model) {
-		log.info(log.getName() + "***ejecutando el controlador Spring MVC****");
+		log.info(log.getName() + "***ejecutando el controlador ControladorPersona****");
 
 		// iPersonaRepositorio.findAll();
 		model.addAttribute("personas", iPersonaServicio.listarPersonas());
@@ -104,7 +103,8 @@ public class ControladorPersona {
 	 * @param per the per
 	 * @return the string
 	 */
-	@GetMapping({"/eliminar/{idPersona}","/borra"})
+//	@GetMapping({"/eliminar/{idPersona}","/borra"})
+	 @GetMapping("/eliminar")
 	public String eliminarPersona(Persona per) {
 		iPersonaServicio.borrarPersona(per);
 		return "redirect:/";
