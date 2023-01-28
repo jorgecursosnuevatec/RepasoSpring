@@ -8,6 +8,7 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,10 +23,17 @@ import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+
 /**
  * The Class ControladorPersona.
+ * INCLUIMOS UN INTERCEPTOR PARA QUE CALCULE EL TIEMPO DE EJECUCION 
+ * OTRO INTERCEPTOR QUE ES EL QUE INYECTAMOS CON VALUE Y EL HORARIOINTERCEPTOR PARA QUE 
+ * DEPENDIENDO DE LA HORA PERMITAMOS EJECUTAR O NO EL PROGRAMA
+ * 
+ * 
  */
 
+/** The Constant log. */
 @Slf4j
 @Controller
 
@@ -46,6 +54,17 @@ public class ControladorPersona {
 
 	/** The lista personas. */
 	private List<Persona> listaPersonas;
+	
+	/** The apertura.  LO GUARDAMOS EN EL PROPERTIES
+	 * ver uso en horariointerceptor-mvconfig*/
+	@Value("${config.horario.apertura}")
+	private Integer apertura;
+	
+	/** The cierre.   LO GUARDAMOS EN EL PROPERTIES
+	 * ver uso en horariointerceptor-mvconfig*/
+	@Value("${config.horario.cierre}")
+	private Integer cierre;
+	
 
 	/**
 	 * Carga datos.
@@ -75,13 +94,11 @@ public class ControladorPersona {
 	 * @param model the model
 	 * @return the string
 	 */
-	@GetMapping("/")
+	@GetMapping({"/", "/index"})
 	public String inicio(Model model) {
 		log.info(log.getName() + "***ejecutando el controlador ControladorPersona****");
-
 		// iPersonaRepositorio.findAll();
 		model.addAttribute("personas", iPersonaServicio.listarPersonas());
-
 		return "index";
 	}
 	
@@ -114,6 +131,7 @@ public class ControladorPersona {
 	 * Guardar persona.
 	 *
 	 * @param per the per
+	 * @param errores the errores
 	 * @return the string
 	 */
 	@PostMapping("/guardar")
@@ -148,5 +166,27 @@ public class ControladorPersona {
 		}
 		return "modificar";
 		
+	}
+	
+	/**
+	 * Cerrado.
+	 *
+	 * @param model the model
+	 * @return the string
+	 */
+	@GetMapping("/cerrado")
+	public String cerrado(Model model) {
+		
+		StringBuilder mensaje = new StringBuilder("Cerrado, por favor visítenos desde las ");
+		mensaje.append(apertura);
+		mensaje.append(" y las ");
+		mensaje.append(cierre);
+		mensaje.append(" hrs. Gracias.");
+		mensaje.append(" REVISA EL HORARIO DEL PROPERTIES");
+		
+		model.addAttribute("titulo", "Fuera del horario de atención");
+		model.addAttribute("mensaje", mensaje);
+		model.addAttribute("horario", "cerradp hasta "+ cierre.toString());
+		return "index";
 	}
 }

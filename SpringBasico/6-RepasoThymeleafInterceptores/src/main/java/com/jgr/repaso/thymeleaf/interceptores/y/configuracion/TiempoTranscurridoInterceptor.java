@@ -1,4 +1,4 @@
-package com.jgr.repaso.thymeleaf.interceptores;
+package com.jgr.repaso.thymeleaf.interceptores.y.configuracion;
 
 import java.util.Random;
 
@@ -34,6 +34,7 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 	 * en esta clase lo que vamos a hacer es ver cuanto tarda en ejecutarse una peticion
 	 * para ello guardamos en el request el tiempo de inicio y luego en el posthandle calculamos lo que 
 	 * ha tardado
+	 * si devuelve FALSE no se ejecutaria el programa
 	 *
 	 * @param request the request
 	 * @param response the response
@@ -55,6 +56,15 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 		logger.info("*****************TiempoTranscurridoInterceptor preHandle Handler->"+handler);
 		}
 		
+		
+		if (request.getMethod().equalsIgnoreCase("post")) {
+			request.setAttribute("esPost", "SI ES POST,cargado en TiempoTranscurridoInterceptor");			
+		}
+		else {
+			request.setAttribute("esPost", "NO ES POST, es->" + request.getMethod()  
+					+ " cargado en TiempoTranscurridoInterceptor");
+		}
+		
 		//guardo el inicio
 		long tiempoInicio = System.currentTimeMillis();
 		request.setAttribute("tiempo inicio", tiempoInicio);
@@ -64,7 +74,9 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 		int retraso = aleatorio.nextInt(500);
 		Thread.sleep(retraso);
 		
+//		Si devolvemos false no se ejecuta el programa
 		return true;
+//		return false;
 	}
 
 	/**
@@ -89,13 +101,12 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 		if(handler instanceof HandlerMethod && modelAndView!=null) {
 //			if(modelAndView!=null) {
 			modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);			
-		}
-		
-		
+	
 		HandlerMethod metodo = (HandlerMethod) handler;
 		
 		logger.info("*****************TiempoTranscurridoInterceptor postHandle saliendo->"+metodo.getMethod().getName());
 		logger.info("*****************TiempoTranscurrido->"+tiempoTranscurrido);
+		}
 		
 	}
 

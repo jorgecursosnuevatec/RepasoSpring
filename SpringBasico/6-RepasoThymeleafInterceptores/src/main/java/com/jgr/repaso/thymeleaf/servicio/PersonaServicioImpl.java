@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jgr.repaso.thymeleaf.interceptores.TiempoTranscurridoInterceptor;
+import com.jgr.repaso.thymeleaf.interceptores.y.configuracion.TiempoTranscurridoInterceptor;
 import com.jgr.repaso.thymeleaf.model.Persona;
 import com.jgr.repaso.thymeleaf.repository.IPersonaRepositorio;
 

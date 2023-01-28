@@ -1,4 +1,4 @@
-package com.jgr.repaso.thymeleaf.interceptores;
+package com.jgr.repaso.thymeleaf.interceptores.y.configuracion;
 
 import java.util.Locale;
 
