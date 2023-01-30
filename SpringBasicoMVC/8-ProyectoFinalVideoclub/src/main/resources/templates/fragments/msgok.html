@@ -1,0 +1,5 @@
+<div th:fragment="msgok" class="container">
+	<div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+		th:if="${mensaje2 != null}" th:text="${mensaje2}"
+		class="alert alert-success"></div>
+</div>

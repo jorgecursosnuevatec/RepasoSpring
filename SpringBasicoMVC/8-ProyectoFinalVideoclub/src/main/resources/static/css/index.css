@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+html {
+
+    background-attachment: fixed;
+    /*background: url(../images/Logo-MGM.jpg) no-repeat;*/
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    
+    font-weight: bolder;
+    text-transform: initial;
+    font-size: 1.2em;
+    width: 99%;
+    height: 99%;
+  
+   /*
+    background: rgb(190, 7, 58);
+    background: linear-gradient(90deg, rgba(190, 7, 58, 0.8914916308320203) 79%, rgba(255, 0, 95, 1) 82%, rgba(121, 9, 38, 0) 99%);
+   */
+}
