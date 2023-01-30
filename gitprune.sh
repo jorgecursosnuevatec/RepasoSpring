@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-01-28 TERMINADO INTERCEPTOR"
+message="$(date)2023-01-30 PRIMERA SUBIDA DESDE CASA"
 fi
 
 start=`date +%s`
