@@ -21,7 +21,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-01-25 SEGUIR CON 116 CRUD"
+message="$(date)2023-02-01 TODO EN MISMO REPOSITORIO"
 fi
 
 git add .
