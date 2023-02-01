@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-01 HECHO EL RENAME ANTES DE PASAR A MYSQL"
+message="$(date)2023-02-01 FUNCIONA CON MYSQL"
 fi
 
 git add .
