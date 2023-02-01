@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-01-30 PRIMERA SUBIDA DESDE CASA"
+message="$(date)2023-02-01 CAMBIADA VERSION IDE A 4.15 PARA QUE FUNCIONE
 fi
 
 start=`date +%s`
