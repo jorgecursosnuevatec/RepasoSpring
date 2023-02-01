@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "bdde155a-3807-434d-8e5c-49f5c0997181",
+		"name": "RepasoCloudEureka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20953727"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "ListaProductos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaProductoPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/ver/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ver",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaProductosPrecioMayorIgual",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/buscarMayorIgual/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"buscarMayorIgual",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaProductosRangoPrecio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/buscarRango/2.12/10.5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"buscarRango",
+								"2.12",
+								"10.5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
