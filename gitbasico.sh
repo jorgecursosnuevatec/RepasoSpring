@@ -12,7 +12,6 @@ AddLog="/dev/null"
 CommitLog="/dev/null"
 PushLog="/dev/null"
 
-
 start=`date +%s`
 
 inicio_ns=`date +%s%N`
