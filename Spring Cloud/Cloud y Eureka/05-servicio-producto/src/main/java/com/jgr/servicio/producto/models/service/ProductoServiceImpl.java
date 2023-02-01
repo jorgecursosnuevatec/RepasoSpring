@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jgr.servicio.producto.models.dao.ProductoRepository;
 import com.jgr.servicio.producto.models.entity.Producto;
+import com.jgr.servicio.producto.models.repository.ProductoRepository;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -89,6 +89,7 @@ public class ProductoServiceImpl implements IProductoService{
 	 * @return the producto
 	 */
 	@Override
+	@Transactional
 	public Producto guardarProducto(Producto producto) {
 
 		return productoRepository.save(producto);
@@ -101,7 +102,22 @@ public class ProductoServiceImpl implements IProductoService{
 	 * @return the list
 	 */
 	@Override
+	@Transactional
 	public List<Producto> guardarListaProductos(List<Producto> productos) {
 		return (List<Producto>) productoRepository.saveAll(productos);
 	}
+
+	/**
+	 * Delete by id.
+	 *
+	 * @param id the id
+	 */
+	@Override
+	@Transactional
+	public void deleteById(Long id){
+		productoRepository.deleteById(id);
+		
+	}
+	
+	
 }

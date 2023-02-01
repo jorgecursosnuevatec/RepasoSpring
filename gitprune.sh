@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-01 CAMBIADA VERSION IDE A 4.15 PARA QUE FUNCIONE
+message="$(date)2023-02-01 FUNCIONA EL CRUD PRODUCTOS"
 fi
 
 start=`date +%s`

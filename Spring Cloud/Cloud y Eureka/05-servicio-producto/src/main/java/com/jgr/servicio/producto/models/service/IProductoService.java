@@ -59,4 +59,14 @@ public interface IProductoService {
 	 * @return the list
 	 */
 	public List<Producto> guardarListaProductos(List<Producto> productos); 
+	
+	
+	/**
+	 * Delete by id.
+	 *
+	 * @param id the id
+	 */
+	public void deleteById(Long id);
+	
+	
 }
