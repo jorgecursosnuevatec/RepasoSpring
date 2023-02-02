@@ -7,6 +7,9 @@
 *.~lock*
 *.~lock.*
 
+### SI USO JAVA EE QUITO LA CONFIGURACION DEL SERVIDOR ###
+Server*/
+
 ### MIO ###
 drivers/
 *.avi

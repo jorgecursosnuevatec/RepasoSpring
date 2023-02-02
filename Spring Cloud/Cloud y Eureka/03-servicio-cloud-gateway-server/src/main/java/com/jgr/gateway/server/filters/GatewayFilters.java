@@ -58,9 +58,11 @@ public class GatewayFilters implements GlobalFilter,Ordered{
 					logger.info(logger.getClass()+"en el filtro post dentro de GatewayFilters");
 					
 					//añadimos a la cabecera de salida el token que hemos creado
-					Optional.ofNullable(exchange.getRequest().getHeaders().getFirst("tokenCabeceraGatewayFilters"))
+					Optional.ofNullable(exchange.getRequest()
+							.getHeaders().getFirst("tokenCabeceraGatewayFilters"))
 					.ifPresent(valorQueLeDamos->{
-						exchange.getResponse().getHeaders().add("tokenCabecera", valorQueLeDamos);
+						exchange.getResponse()
+						.getHeaders().add("tokenCabecera", valorQueLeDamos);
 					});
 					
 					exchange.getResponse()

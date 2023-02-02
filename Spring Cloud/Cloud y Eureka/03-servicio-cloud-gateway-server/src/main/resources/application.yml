@@ -14,13 +14,20 @@ spring:
         uri: lb://servicio-productos
         predicates:
         - Path=/api/productos/**
+        
+         ##indicamos que el path tiene dos partes, las que separa el /
         filters:
           - StripPrefix=2
+          ##
           - EjemploCookie=Mensaje desde el yaml del gateway lo usamos en el filterfactory, usuario, AndresGuzman
       - id: servicio-items
         uri: lb://servicio-items
         predicates:
         - Path=/api/items/**
         filters:
-          - StripPrefix=2 ##indicamos que la ruta esta compuesta por api / y luego items /    
-    
+          - StripPrefix=2
+          ##estos parametros los envio y los capturo en el propio microservicio
+          - AddRequestHeader=token-request, tokenEntrada
+          - AddResponseHeader=token-response, tokenRespuestaDesdeParametrosCLOUDGATEWAY
+          - SetResponseHeader=Content-Type, text/plain
+          - AddRequestParameter=nombre, andres

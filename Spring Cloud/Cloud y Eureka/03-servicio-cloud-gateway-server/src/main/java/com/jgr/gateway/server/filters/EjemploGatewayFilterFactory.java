@@ -42,7 +42,8 @@ public class EjemploGatewayFilterFactory extends AbstractGatewayFilterFactory<Ej
 			return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 				
 				Optional.ofNullable(config.cookieValor).ifPresent(cookie -> {
-					exchange.getResponse().addCookie(ResponseCookie.from(config.cookieNombre, cookie).build());
+					exchange.getResponse()
+					.addCookie(ResponseCookie.from(config.cookieNombre, cookie).build());
 				});
 				
 				logger.info("ejecutando post gateway filter factory: " + config.mensaje);
