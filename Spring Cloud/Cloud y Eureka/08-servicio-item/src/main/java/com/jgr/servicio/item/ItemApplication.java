@@ -10,10 +10,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication
-public class SpringbootServicioItemApplication {
+public class ItemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootServicioItemApplication.class, args);
+		SpringApplication.run(ItemApplication.class, args);
 	}
 
 }

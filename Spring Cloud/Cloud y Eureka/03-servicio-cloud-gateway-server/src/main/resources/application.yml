@@ -15,7 +15,8 @@ spring:
         predicates:
         - Path=/api/productos/**
         filters:
-          - StripPrefix=2 ##indicamos que la ruta esta compuesta por api / y luego productos /
+          - StripPrefix=2
+          - EjemploCookie=Mensaje desde el yaml del gateway lo usamos en el filterfactory, usuario, AndresGuzman
       - id: servicio-items
         uri: lb://servicio-items
         predicates:

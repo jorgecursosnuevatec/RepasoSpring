@@ -9,8 +9,8 @@
 		<version>2.3.12.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>04-servicio-zuul</groupId>
-	<artifactId>04-servicio-zuul</artifactId>
+	<groupId>999999-servicio-zuul</groupId>
+	<artifactId>999999-servicio-zuul</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-servicio-zuul-server</name>
 	<description>Demo project for Spring Boot</description>

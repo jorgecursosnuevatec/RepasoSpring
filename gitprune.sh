@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-01 SEGUIR CON 35 FILTROS EN GATEWAY"
+message="$(date)2023-02-01 SEGUIR CON 39 FILTRO PARA ITEMS"
 fi
 
 start=`date +%s`
