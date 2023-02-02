@@ -133,15 +133,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8090/api/productosbuscarMayorIgual/2",
+							"raw": "localhost:8090/api/productos/buscarMayorIgual/0.0",
 							"host": [
 								"localhost"
 							],
 							"port": "8090",
 							"path": [
 								"api",
-								"productosbuscarMayorIgual",
-								"2"
+								"productos",
+								"buscarMayorIgual",
+								"0.0"
 							]
 						}
 					},
@@ -375,6 +376,25 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Eureka",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8761/eureka/apps",
+					"host": [
+						"localhost"
+					],
+					"port": "8761",
+					"path": [
+						"eureka",
+						"apps"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
