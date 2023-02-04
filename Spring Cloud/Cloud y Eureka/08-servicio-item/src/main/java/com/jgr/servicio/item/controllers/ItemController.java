@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jgr.servicio.item.models.Item;
 import com.jgr.servicio.item.models.Producto;
 import com.jgr.servicio.item.models.service.ItemService;
+
 
 
 /**
@@ -29,7 +31,12 @@ public class ItemController {
 	@Qualifier("serviceFeign")
 	private ItemService itemService;
 	
+	/** The circuit breaker factory. */
+	@Autowired
+	private CircuitBreakerFactory circuitBreakerFactory;
 	
+	
+	/** The logger. */
 	private final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
 	/**
@@ -56,25 +63,56 @@ public class ItemController {
 	}
 	
 	/**
+	 * Detalle error metodo alternativo.
+	 * declaramos por programa un metodo alternativo en caso de error
+	 * si da error le pasamos como parametro al metodo alternativo el error
+	 *
+	 * @param id the id
+	 * @param cantidad the cantidad
+	 * @return the item
+	 */
+	@GetMapping("/verResilience4j/{id}/cantidad/{cantidad}")
+	public Item detalleErrorMetodoAlternativo(@PathVariable Long id, @PathVariable Integer cantidad) {
+		
+		//le doy un nombre al metodo alternativo a ejecutar en caso de error
+		return circuitBreakerFactory.create("metodoAlternativoErrorItemsPrograma")
+				.run(()->itemService.findByIdError(id, cantidad)//esto lo hace si ok
+						,error->metodoAlternativo(id,cantidad,error));//si hay error hace esto
+	}
+	
+	
+	/**
 	 * Metodo alternativo.
 	 *
 	 * @param id the id
 	 * @param cantidad the cantidad
 	 * @return the item
 	 */
-	public Item metodoAlternativo(Long id, Integer cantidad) {
-		Item item = new Item();
-		Producto producto = new Producto();
+	public Item metodoAlternativo(Long id, Integer cantidad,Throwable error) {
 		
-		item.setCantidad(cantidad);
-		producto.setId(id);
-		producto.setNombre("Camara Sony");
-		producto.setPrecio(500.00);
+		logger.info("entra en metodo alternativo ItemController->"+error.getLocalizedMessage());
+		
+	
+		Item item = new Item();
+		
+		Producto producto = new Producto();		
+		item.setCantidad(999999999);
+		producto.setId((long) 9.9);
+		producto.setNombre("Generado en metodo Alternativo error");
+		producto.setPrecio(00.00);
 		item.setProducto(producto);
 		return item;
+		
 	}
 	
 	
+	/**
+	 * Listar parametros sysout.
+	 *
+	 * @param nombre the nombre
+	 * @param token the token
+	 * @return the list
+	 */
 	@GetMapping("/listarParametrosSysout")
 	public List<Item> listarParametrosSysout(@RequestParam(name="nombre", required= false) String nombre,
 			@RequestHeader(name="token-request", required = false) String token){

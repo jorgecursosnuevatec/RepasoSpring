@@ -31,3 +31,6 @@ spring:
           - AddResponseHeader=token-response, tokenRespuestaDesdeParametrosCLOUDGATEWAY
           - SetResponseHeader=Content-Type, text/plain
           - AddRequestParameter=nombre, andres
+logging:
+  level:
+    '[com.jgr.gateway.server.filters]': ERROR

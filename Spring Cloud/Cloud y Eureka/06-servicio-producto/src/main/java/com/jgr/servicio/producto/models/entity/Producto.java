@@ -12,9 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Producto.
  */
@@ -110,9 +108,12 @@ public class Producto implements Serializable{
 	 *
 	 * @param createAt the new creates the at
 	 */
+	
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
+	
+	
 	
 	
 	public void setCreateAt() {

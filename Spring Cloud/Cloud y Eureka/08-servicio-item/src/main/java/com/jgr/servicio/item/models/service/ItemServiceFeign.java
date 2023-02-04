@@ -3,6 +3,8 @@ package com.jgr.servicio.item.models.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class ItemServiceFeign implements ItemService {
 	
 	@Autowired
 	private ProductoClienteRest clienteFeign;
+	
+	private final Logger logger = LoggerFactory.getLogger(ItemServiceFeign.class);
 
 	@Override
 	public List<Item> findAll() {
@@ -22,7 +26,14 @@ public class ItemServiceFeign implements ItemService {
 
 	@Override
 	public Item findById(Long id, Integer cantidad) {
+		logger.debug("En clienteFeing NO metodo error");
 		return new Item(clienteFeign.detalle(id), cantidad);
+	}
+	@Override
+	public Item findByIdError(Long id, Integer cantidad) {
+		logger.debug("En clienteFeign metodo error");
+
+		return new Item(clienteFeign.detalleError(id), cantidad);
 	}
 
 }

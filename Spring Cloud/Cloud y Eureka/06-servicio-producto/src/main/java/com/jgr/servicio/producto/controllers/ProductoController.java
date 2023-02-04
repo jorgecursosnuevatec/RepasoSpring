@@ -3,6 +3,8 @@ package com.jgr.servicio.producto.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.jgr.servicio.producto.models.entity.Producto;
 import com.jgr.servicio.producto.models.service.IProductoService;
@@ -39,6 +42,9 @@ public class ProductoController {
 	@Autowired
 	private IProductoService productoService;
 	
+	
+	private final Logger logger = LoggerFactory.getLogger(ProductoController.class);
+	
 	/**
 	 * Listar.
 	 *
@@ -61,18 +67,45 @@ public class ProductoController {
 	 */
 	@GetMapping("/ver/{id}")
 	public Producto detalle(@PathVariable Long id) {
+		
+		
+		logger.debug("endetalleProducto");
 		Producto producto = productoService.findById(id);
 		producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 		//producto.setPort(port);
 		
+		return producto;
+	}
+	
+	@GetMapping("/verError/{id}")
+	public Producto detalleError(@PathVariable Long id) {
+		Producto producto = productoService.findById(id);
+		producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
+		//producto.setPort(port);
+		
+		logger.debug("en detalleErrorProducto");
 		/*
-		 * try {
+		try {
 			Thread.sleep(2000L);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
+		*/
 		
+		if(id==1) {
+			try {
+				Thread.sleep(2000L);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		
+		if(id!=null & id!=1) {
+			logger.error("en detalleErrorProducto");
+		throw new IllegalStateException("Error provocado en controller producto para probar circuitbreaker");
+		}
 		return producto;
 	}
 	

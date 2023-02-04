@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-02 SEGUIR CON CIRCUITBREAKER SECCION 5"
+message="$(date)2023-02-04 ANTES DE PERSONALIZAR PARAMETROS CON CIRCUITBREAKER"
 fi
 
 git add .
