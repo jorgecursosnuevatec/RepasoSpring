@@ -18,8 +18,12 @@ import com.jgr.servicio.item.models.Item;
 import com.jgr.servicio.item.models.Producto;
 import com.jgr.servicio.item.models.service.ItemService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 
 
+
+// TODO: Auto-generated Javadoc
 /**
  * The Class ItemController.
  */
@@ -66,11 +70,14 @@ public class ItemController {
 	 * Detalle error metodo alternativo.
 	 * declaramos por programa un metodo alternativo en caso de error
 	 * si da error le pasamos como parametro al metodo alternativo el error
+	 * lo configuramos en AppConfigResilience
 	 *
 	 * @param id the id
 	 * @param cantidad the cantidad
 	 * @return the item
 	 */
+	
+	
 	@GetMapping("/verResilience4j/{id}/cantidad/{cantidad}")
 	public Item detalleErrorMetodoAlternativo(@PathVariable Long id, @PathVariable Integer cantidad) {
 		
@@ -82,10 +89,30 @@ public class ItemController {
 	
 	
 	/**
+	 * Detalle error circuit breaker.
+	 * lo definimos en el properties
+	 *
+	 * @param id the id
+	 * @param cantidad the cantidad
+	 * @return the item
+	 */
+	@CircuitBreaker(name="errorControladoCircuitBreaker",fallbackMethod="metodoAlternativo")
+	@TimeLimiter(name="errorControladoCircuitBreaker")
+	
+	@GetMapping("/verMetodoCircuitBreaker/{id}/cantidad/{cantidad}")
+	public Item detalleErrorCircuitBreaker(@PathVariable Long id, @PathVariable Integer cantidad) {
+		
+		return itemService.findByIdError(id, cantidad);
+	}
+	
+	
+	
+	/**
 	 * Metodo alternativo.
 	 *
 	 * @param id the id
 	 * @param cantidad the cantidad
+	 * @param error the error
 	 * @return the item
 	 */
 	public Item metodoAlternativo(Long id, Integer cantidad,Throwable error) {

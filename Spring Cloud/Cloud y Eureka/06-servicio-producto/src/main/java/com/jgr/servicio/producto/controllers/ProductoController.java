@@ -84,20 +84,11 @@ public class ProductoController {
 		//producto.setPort(port);
 		
 		logger.debug("en detalleErrorProducto");
-		/*
-		try {
-			Thread.sleep(2000L);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
 		
 		if(id==1) {
 			try {
 				Thread.sleep(2000L);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		}
