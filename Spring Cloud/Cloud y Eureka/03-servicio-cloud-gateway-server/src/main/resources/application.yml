@@ -1,3 +1,25 @@
+##configuracion del resilience para productos y para items          
+resilience4j:
+  circuitbreaker:
+    configs:
+      defecto:
+        sliding-window-size: 6
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 2s
+    instances:
+      productos:
+        base-config: defecto
+  timelimiter:
+    configs:
+      defecto:
+        timeout-duration: 2s
+    instances:
+      productos:
+        base-config: defecto         
+
 eureka:
   client:
     serviceUrl:
@@ -13,10 +35,14 @@ spring:
       - id: servicio-productos
         uri: lb://servicio-productos
         predicates:
-        - Path=/api/productos/**
-        
+        - Path=/api/productos/**        
          ##indicamos que el path tiene dos partes, las que separa el /
         filters:
+          ##- name: CircuitBreaker ##creamos filtro circuitbreaker y en caso de error le mandamos ahi
+          ##  args:
+          ##    name: productos
+          ##    statusCodes: 500
+          ##    fallbackUri: forward:/api/items/ver/9/cantidad/5
           - StripPrefix=2
           ##
           - EjemploCookie=Mensaje desde el yaml del gateway lo usamos en el filterfactory, usuario, AndresGuzman
@@ -31,6 +57,7 @@ spring:
           - AddResponseHeader=token-response, tokenRespuestaDesdeParametrosCLOUDGATEWAY
           - SetResponseHeader=Content-Type, text/plain
           - AddRequestParameter=nombre, andres
+ 
 logging:
   level:
     '[com.jgr.gateway.server.filters]': ERROR

@@ -10,6 +10,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * 
  * en la clase GatewayFilters añadimos unos filtros, en el pre añadimos cookies a la cabecera
  * Y cambiamos el formato de salida, podemos cambiar de json a texto plano
+ * para el resilience4j hay que añadir reactor a lo que pone por defecto
+ * spring-cloud-starter-circuitbreaker-reactor-resilience4j
+ * 
+ * 
  */
 @SpringBootApplication
 @EnableDiscoveryClient

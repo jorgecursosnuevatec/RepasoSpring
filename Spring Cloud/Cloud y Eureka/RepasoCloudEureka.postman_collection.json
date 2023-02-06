@@ -287,6 +287,69 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ZuulBuscaProductoPorIdERROR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/verError/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"verError",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ZuulBuscaProductoPorIdERROR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/verError/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"verError",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ZuulBuscaProductoPorIdERROR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/verError/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"verError",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -390,6 +453,54 @@
 								"api",
 								"items",
 								"listarParametrosSysout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ZuulVerItemCantidadERROR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items//verResilience4j/1/cantidad/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"",
+								"verResilience4j",
+								"1",
+								"cantidad",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ZuulVerItemCantidadERRORverMetodoCircuitBreaker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items//verMetodoCircuitBreaker/1/cantidad/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"",
+								"verMetodoCircuitBreaker",
+								"1",
+								"cantidad",
+								"5"
 							]
 						}
 					},

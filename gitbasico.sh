@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-04 CONTROL ERRORES RESILIENCE4J"
+message="$(date)2023-02-06 FUNCIONA OK"
 fi
 
 git add .
