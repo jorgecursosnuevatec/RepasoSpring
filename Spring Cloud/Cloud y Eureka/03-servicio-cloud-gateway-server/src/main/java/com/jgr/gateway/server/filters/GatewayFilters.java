@@ -69,8 +69,8 @@ public class GatewayFilters implements GlobalFilter,Ordered{
 					.getCookies()//añadimos una cookie
 					.add("galleta", ResponseCookie.from("galleta", "valorCookieGatewayFilters").build());
 					
-					exchange.getResponse() //lo añadimos a la cabecera
-					.getHeaders().setContentType(MediaType.APPLICATION_JSON);//formato de la respuesta(texto,json...)
+//					exchange.getResponse() //lo añadimos a la cabecera
+//					.getHeaders().setContentType(MediaType.APPLICATION_JSON);//formato de la respuesta(texto,json...)
 				})); //cuando ha terminado la ejecucion,ya seria el post
 	}
 

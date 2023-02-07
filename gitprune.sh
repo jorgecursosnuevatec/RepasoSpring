@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-04 ANTES DE EMPEZAR"
+message="$(date)2023-02-06 SEGUIR CON 62 CONFIGURAR AMBIENTES"
 fi
 
 start=`date +%s`

@@ -505,6 +505,50 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ZuulPropertiesConfig",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/obtenerConfig",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"obtenerConfig"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ConfigServer",
+			"item": [
+				{
+					"name": "ConfigItems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/servicio-items/default",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"default"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

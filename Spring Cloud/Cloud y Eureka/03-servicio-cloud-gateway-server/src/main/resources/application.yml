@@ -57,7 +57,9 @@ spring:
           - AddResponseHeader=token-response, tokenRespuestaDesdeParametrosCLOUDGATEWAY
           - SetResponseHeader=Content-Type, text/plain
           - AddRequestParameter=nombre, andres
- 
+##DEJARLO HASTA QUE SUBA EL PROPERTIES A GIT          
+    config:
+      enabled: false 
 logging:
   level:
     '[com.jgr.gateway.server.filters]': ERROR

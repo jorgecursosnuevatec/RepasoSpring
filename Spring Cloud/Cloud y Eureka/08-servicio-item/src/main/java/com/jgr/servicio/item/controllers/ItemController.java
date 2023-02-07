@@ -1,26 +1,28 @@
 package com.jgr.servicio.item.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import com.jgr.servicio.item.models.Item;
 import com.jgr.servicio.item.models.Producto;
 import com.jgr.servicio.item.models.service.ItemService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
-
 
 
 // TODO: Auto-generated Javadoc
@@ -38,6 +40,11 @@ public class ItemController {
 	/** The circuit breaker factory. */
 	@Autowired
 	private CircuitBreakerFactory circuitBreakerFactory;
+	
+	/** The texto config. */
+	//RECOGEMOS LA PROPIEDAD DEFINIDA EN EL PROPERTIES
+	@Value("$configuracion.texto.properties")
+	private String textoConfig;
 	
 	
 	/** The logger. */
@@ -148,6 +155,27 @@ public class ItemController {
 		logger.info("ItemController listarParametrosSysout->: " + nombre);
 		logger.info("ItemController listarParametrosSysout->: " + token);
 		return itemService.findAll();
+	}
+	
+	
+	/**
+	 * Obtener configuracion del serviciodesde git.
+	 * El puerto lo obtenemos como parametro,tambien con el @Value
+	 *
+	 * @param nombre the nombre
+	 * @param token the token
+	 * @return the list
+	 */
+	@GetMapping("/obtenerConfig")
+	public ResponseEntity<?> obtenerConfiguracion(@Value("$server.port") String puerto){
+		
+		
+		Map<String,String> mapaRetorno = new HashMap<>();
+		mapaRetorno.put("Configuracion", textoConfig);
+		mapaRetorno.put("Puerto",puerto);
+		
+		return new ResponseEntity <Map<String,String>>(mapaRetorno,HttpStatus.OK);
+//		
 	}
 	
 
