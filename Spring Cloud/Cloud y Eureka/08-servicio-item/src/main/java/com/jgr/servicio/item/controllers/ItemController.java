@@ -1,8 +1,12 @@
 package com.jgr.servicio.item.controllers;
+import org.springframework.core.env.Environment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.cloud.config.environment.Environment;
+import org.springframework.cloud.config.environment.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +31,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ItemController.
  */
@@ -43,8 +49,17 @@ public class ItemController {
 	
 	/** The texto config. */
 	//RECOGEMOS LA PROPIEDAD DEFINIDA EN EL PROPERTIES
-	@Value("$configuracion.texto.properties")
+	@Value("${configuracion.texto.properties}")
 	private String textoConfig;
+	
+	
+	@Autowired
+    private Environment env;
+	
+	
+	@Value("${spring.profiles.active}")
+	private String entorno;
+	
 	
 	
 	/** The logger. */
@@ -167,14 +182,41 @@ public class ItemController {
 	 * @return the list
 	 */
 	@GetMapping("/obtenerConfig")
-	public ResponseEntity<?> obtenerConfiguracion(@Value("$server.port") String puerto){
-		
-		
+	public ResponseEntity<?> obtenerConfiguracion(@Value("${server.port}") String puerto){
+				
 		Map<String,String> mapaRetorno = new HashMap<>();
 		mapaRetorno.put("Configuracion", textoConfig);
 		mapaRetorno.put("Puerto",puerto);
+		mapaRetorno.put("Entorno", entorno);
+
 		
-		return new ResponseEntity <Map<String,String>>(mapaRetorno,HttpStatus.OK);
+		
+		//añadimos el entorno en el que esta
+		if( env.getDefaultProfiles().length>0) {
+			for (String p :env.getDefaultProfiles()) {
+				mapaRetorno.put("Por defecto",p);				
+			}
+		}
+		
+		if( env.getActiveProfiles().length>0) {
+			for (String p :env.getActiveProfiles()) {
+				mapaRetorno.put("Perfiles",p);				
+			}
+		}
+		
+		
+		//ordeno el mapa
+		List<Entry<String, String>> list = new ArrayList<>(mapaRetorno.entrySet());
+        list.sort(Entry.comparingByValue());
+        
+        Map<String, String> result = new LinkedHashMap<>();
+        
+        for (Entry<String, String> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+		
+		return new ResponseEntity <Map<String,String>>(result,HttpStatus.OK);
 //		
 	}
 	

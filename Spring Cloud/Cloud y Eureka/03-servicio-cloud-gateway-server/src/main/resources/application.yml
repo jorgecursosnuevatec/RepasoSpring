@@ -55,11 +55,11 @@ spring:
           ##estos parametros los envio y los capturo en el propio microservicio
           - AddRequestHeader=token-request, tokenEntrada
           - AddResponseHeader=token-response, tokenRespuestaDesdeParametrosCLOUDGATEWAY
-          - SetResponseHeader=Content-Type, text/plain
-          - AddRequestParameter=nombre, andres
+          - SetResponseHeader=Content-Type, application/json
+          - AddRequestParameter=nombre, yomismodesdegateway
 ##DEJARLO HASTA QUE SUBA EL PROPERTIES A GIT          
     config:
-      enabled: false 
+      enabled: FALSE 
 logging:
   level:
     '[com.jgr.gateway.server.filters]': ERROR

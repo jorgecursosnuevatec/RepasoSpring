@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-06 FUNCIONA OK"
+message="$(date)2023-02-07 CONFIGURANDO PROFILES EN ITEMS"
 fi
 
 git add .

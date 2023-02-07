@@ -507,7 +507,7 @@
 					"response": []
 				},
 				{
-					"name": "ZuulPropertiesConfig",
+					"name": "ZuulITEMPropertiesConfig",
 					"request": {
 						"method": "GET",
 						"header": [],
