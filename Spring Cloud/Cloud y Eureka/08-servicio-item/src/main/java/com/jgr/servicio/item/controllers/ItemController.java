@@ -7,15 +7,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
-import org.springframework.cloud.config.environment.Environment;
-import org.springframework.cloud.config.environment.PropertySource;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,18 +26,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.jgr.servicio.item.models.Item;
 import com.jgr.servicio.item.models.Producto;
 import com.jgr.servicio.item.models.service.ItemService;
-
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 
 
 
 /**
  * The Class ItemController.
  */
+
 @RestController
 public class ItemController {
 	
@@ -43,21 +45,21 @@ public class ItemController {
 	@Qualifier("serviceFeign")
 	private ItemService itemService;
 	
-	/** The circuit breaker factory. */
-	@Autowired
-	private CircuitBreakerFactory circuitBreakerFactory;
 	
-	/** The texto config. */
+	
+	
+	/** The texto config.
 	//RECOGEMOS LA PROPIEDAD DEFINIDA EN EL PROPERTIES
 	@Value("${configuracion.texto.properties}")
+	 */
 	private String textoConfig;
 	
 	
-	@Autowired
+	@Autowired	
     private Environment env;
-	
-	
+/*
 	@Value("${spring.profiles.active}")
+	*/
 	private String entorno;
 	
 	
@@ -97,7 +99,7 @@ public class ItemController {
 	 * @param id the id
 	 * @param cantidad the cantidad
 	 * @return the item
-	 */
+	
 	
 	
 	@GetMapping("/verResilience4j/{id}/cantidad/{cantidad}")
@@ -108,6 +110,7 @@ public class ItemController {
 				.run(()->itemService.findByIdError(id, cantidad)//esto lo hace si ok
 						,error->metodoAlternativo(id,cantidad,error));//si hay error hace esto
 	}
+	 */
 	
 	
 	/**
@@ -189,7 +192,7 @@ public class ItemController {
 		mapaRetorno.put("Puerto",puerto);
 		mapaRetorno.put("Entorno", entorno);
 
-		
+		/*
 		
 		//añadimos el entorno en el que esta
 		if( env.getDefaultProfiles().length>0) {
@@ -204,7 +207,7 @@ public class ItemController {
 			}
 		}
 		
-		
+		*/
 		//ordeno el mapa
 		List<Entry<String, String>> list = new ArrayList<>(mapaRetorno.entrySet());
         list.sort(Entry.comparingByValue());

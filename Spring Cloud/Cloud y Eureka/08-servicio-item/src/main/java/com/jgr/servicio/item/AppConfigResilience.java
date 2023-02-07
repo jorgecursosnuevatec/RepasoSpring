@@ -27,7 +27,7 @@ public class AppConfigResilience{
 	 *
 	 * @return the customizer
 	 */
-	@Bean
+	////////////////////////////////////////////@Bean
 	public Customizer<Resilience4JCircuitBreakerFactory> porDefecto(){
 		return factory->factory
 				.configureDefault(i->{

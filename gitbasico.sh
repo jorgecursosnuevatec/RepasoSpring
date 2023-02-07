@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-07 CONFIGURANDO PROFILES EN ITEMS"
+message="$(date)2023-02-07NO LEE EL PROPERTIES"
 fi
 
 git add .
