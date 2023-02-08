@@ -562,7 +562,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 10,\r\n    \"nombre\": \"xxxx\",\r\n    \"precio\": 9999.0,\r\n    \"createAt\": \"9999-12-31T00:00:00.000+00:00\",\r\n    \"port\": 62330\r\n}",
+							"raw": "{\r\n    \r\n    \"nombre\": \"xxxx\",\r\n    \"precio\": 9999.0,\r\n    \"createAt\": \"9999-12-31T00:00:00.000+00:00\",\r\n    \"port\": 62330\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

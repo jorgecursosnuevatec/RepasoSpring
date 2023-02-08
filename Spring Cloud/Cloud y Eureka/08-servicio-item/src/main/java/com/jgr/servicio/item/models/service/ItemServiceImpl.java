@@ -130,6 +130,11 @@ public class ItemServiceImpl implements ItemService {
 		return response.getBody();//devolvemos el producto que recuperamos de la llamada
 	}
 
+	/**
+	 * Eliminar.
+	 *
+	 * @param id the id
+	 */
 	@Override
 	public void eliminar(Long id) {
 		//el valor de id lo pasamos en un map
