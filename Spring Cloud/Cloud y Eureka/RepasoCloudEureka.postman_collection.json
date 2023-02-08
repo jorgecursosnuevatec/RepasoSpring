@@ -587,6 +587,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ConfigItemActuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/actuator/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"actuator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConfigItemActuatorActualiza",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8004/actuator/refresh",
+							"host": [
+								"localhost"
+							],
+							"port": "8004",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

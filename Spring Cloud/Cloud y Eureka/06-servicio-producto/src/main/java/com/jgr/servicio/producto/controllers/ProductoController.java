@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,11 +24,11 @@ import com.jgr.servicio.producto.models.entity.Producto;
 import com.jgr.servicio.producto.models.service.IProductoService;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProductoController.
  */
 @RestController
+@RefreshScope//para actualizar componentes con @Value,Environment...
 public class ProductoController {
 	
 	/** The env. */

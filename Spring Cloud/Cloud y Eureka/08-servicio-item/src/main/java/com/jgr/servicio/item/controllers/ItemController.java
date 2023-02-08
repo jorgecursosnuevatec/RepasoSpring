@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
-
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +38,7 @@ import com.jgr.servicio.item.models.service.ItemService;
  */
 
 @RestController
+@RefreshScope//para actualizar componentes con @Value,Environment...
 public class ItemController {
 	
 	/** The item service. */
@@ -46,20 +47,19 @@ public class ItemController {
 	private ItemService itemService;
 	
 	
-	
-	
 	/** The texto config.
 	//RECOGEMOS LA PROPIEDAD DEFINIDA EN EL PROPERTIES
-	@Value("${configuracion.texto.properties}")
+	 * 
 	 */
+	@Value("${configuracion.texto.properties}")
+	
 	private String textoConfig;
 	
 	
 	@Autowired	
     private Environment env;
-/*
+
 	@Value("${spring.profiles.active}")
-	*/
 	private String entorno;
 	
 	
@@ -192,7 +192,7 @@ public class ItemController {
 		mapaRetorno.put("Puerto",puerto);
 		mapaRetorno.put("Entorno", entorno);
 
-		/*
+		
 		
 		//añadimos el entorno en el que esta
 		if( env.getDefaultProfiles().length>0) {
@@ -207,9 +207,14 @@ public class ItemController {
 			}
 		}
 		
-		*/
+		
+		logger.debug("env.getActiveProfiles()"+ env.getActiveProfiles().toString());
+		mapaRetorno.forEach((k,v)->logger.debug("clave->"+ k + " valor->"+v));
+		
 		//ordeno el mapa
+		
 		List<Entry<String, String>> list = new ArrayList<>(mapaRetorno.entrySet());
+		
         list.sort(Entry.comparingByValue());
         
         Map<String, String> result = new LinkedHashMap<>();
