@@ -549,6 +549,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ConfigItemsDev",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/servicio-items/dev",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"dev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConfigItemsProd",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/servicio-items/prod",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"prod"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

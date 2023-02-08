@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-07NO LEE EL PROPERTIES"
+message="$(date)2023-02-08 FUNCIONA CONFIG SERVER"
 fi
 
 git add .
