@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-08 ANTES DEL CRUD DE PRODUCTOS"
+message="$(date)2023-02-08 CRUD CON RESTTEMPLATE"
 fi
 
 start=`date +%s`

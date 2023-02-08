@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.jgr.servicio.item.cliente.feign.ProductoClienteRest;
 import com.jgr.servicio.item.models.Item;
+import com.jgr.servicio.item.models.Producto;
 
 @Service("serviceFeign")
 public class ItemServiceFeign implements ItemService {
@@ -34,6 +35,24 @@ public class ItemServiceFeign implements ItemService {
 		logger.debug("En clienteFeign metodo error");
 
 		return new Item(clienteFeign.detalleError(id), cantidad);
+	}
+
+	@Override
+	public Producto altaProducto(Producto producto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto editar(Producto producto, Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

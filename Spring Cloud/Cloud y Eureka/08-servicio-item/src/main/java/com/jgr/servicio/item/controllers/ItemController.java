@@ -21,10 +21,16 @@ import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jgr.servicio.item.models.Item;
@@ -33,8 +39,11 @@ import com.jgr.servicio.item.models.service.ItemService;
 
 
 
+
 /**
  * The Class ItemController.
+ * se llama internamente con feign o con servicio rest dependiendo de cual de los item service
+ * usamos al microservicio productos
  */
 
 @RestController
@@ -43,7 +52,8 @@ public class ItemController {
 	
 	/** The item service. */
 	@Autowired
-	@Qualifier("serviceFeign")
+	//@Qualifier("serviceFeign")
+	@Qualifier("serviceRestTemplate")
 	private ItemService itemService;
 	
 	
@@ -56,9 +66,11 @@ public class ItemController {
 	private String textoConfig;
 	
 	
+	/** The env. */
 	@Autowired	
     private Environment env;
 
+	/** The entorno. */
 	@Value("${spring.profiles.active}")
 	private String entorno;
 	
@@ -143,8 +155,6 @@ public class ItemController {
 	public Item metodoAlternativo(Long id, Integer cantidad,Throwable error) {
 		
 		logger.info("entra en metodo alternativo ItemController->"+error.getLocalizedMessage());
-		
-	
 		Item item = new Item();
 		
 		Producto producto = new Producto();		
@@ -180,8 +190,7 @@ public class ItemController {
 	 * Obtener configuracion del serviciodesde git.
 	 * El puerto lo obtenemos como parametro,tambien con el @Value
 	 *
-	 * @param nombre the nombre
-	 * @param token the token
+	 * @param puerto the puerto
 	 * @return the list
 	 */
 	@GetMapping("/obtenerConfig")
@@ -223,10 +232,46 @@ public class ItemController {
             result.put(entry.getKey(), entry.getValue());
         }
 
-		
 		return new ResponseEntity <Map<String,String>>(result,HttpStatus.OK);
-//		
+		
 	}
+	
+	/**
+	 * Crear.
+	 *
+	 * @param producto the producto
+	 * @return the producto
+	 */
+	@PostMapping("/crear")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Producto crear(@RequestBody Producto producto) {
+		return itemService.altaProducto(producto);
+	}
+	
+	/**
+	 * Editar.
+	 *
+	 * @param producto the producto
+	 * @param id the id
+	 * @return the producto
+	 */
+	@PutMapping("/editar/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Producto editar(@RequestBody Producto producto, @PathVariable Long id) {
+		return itemService.editar(producto, id);
+	}
+	
+	/**
+	 * Eliminar.
+	 *
+	 * @param id the id
+	 */
+	@DeleteMapping("/eliminar/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void eliminar(@PathVariable Long id) {
+		itemService.eliminar(id);
+	}
+	
 	
 
 }
