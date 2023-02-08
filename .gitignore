@@ -18,6 +18,7 @@ drivers/
 ##por si acaso hay un repositorio dentro de otro
 .git
 .git/
+.git*
 
 ##por si acaso hay un log
 *.log
