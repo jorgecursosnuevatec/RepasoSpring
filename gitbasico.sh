@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-08 CRUD ITEMS/PRODUCTO"
+message="$(date)2023-02-08 EMPEZANDO COMMONS MODELO DATOS"
 fi
 
 git add .
