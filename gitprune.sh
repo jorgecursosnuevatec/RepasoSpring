@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-06 SEGUIR CON 62 CONFIGURAR AMBIENTES"
+message="$(date)2023-02-08 PTE PROBAR SI FUNCIONA EL CLOUD CONFIG"
 fi
 
 start=`date +%s`
