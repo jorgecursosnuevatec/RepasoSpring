@@ -1,8 +1,0 @@
-PARA CREAR EL JAR
-.\mvnw clean package -DskipTests 
-
-el -DskipTests es para que no haga el test
-
-install lo publica en el directorio local de maven
-
-.\mvnw install -DskipTests 
