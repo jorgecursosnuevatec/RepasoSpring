@@ -14,12 +14,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-servicio-productos</name>
 	<description>Demo project for Spring Boot</description>
-
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
+		<!-- DEPENDENCIA DEL MODELO DE DATOS DE COMMONS-MODELO DATOS -->
+		<dependency>
+			<groupId>com.jgr.commons.modelo.datos</groupId>
+			<artifactId>09-commons-modelo-datos</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

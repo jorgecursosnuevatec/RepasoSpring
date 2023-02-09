@@ -15,10 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.jgr.commons.modelo.datos.models.entity.Producto;
 import com.jgr.servicio.item.models.Item;
-import com.jgr.servicio.item.models.Producto;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ItemServiceImpl.
  */

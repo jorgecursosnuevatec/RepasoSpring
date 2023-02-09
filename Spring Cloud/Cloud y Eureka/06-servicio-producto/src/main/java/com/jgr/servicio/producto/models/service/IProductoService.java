@@ -2,7 +2,9 @@ package com.jgr.servicio.producto.models.service;
 
 import java.util.List;
 
-import com.jgr.servicio.producto.models.entity.Producto;
+import com.jgr.commons.modelo.datos.models.entity.Producto;
+
+
 
 
 /**

@@ -2,7 +2,8 @@ package com.jgr.servicio.item.models;
 
 import java.util.Date;
 
-public class Producto {
+//antes de que crear el commons
+public class ProductoAnt {
 	
 	private Long id;
 	private String nombre;

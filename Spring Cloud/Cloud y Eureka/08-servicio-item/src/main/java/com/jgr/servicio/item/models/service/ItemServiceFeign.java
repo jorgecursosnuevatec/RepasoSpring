@@ -8,10 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jgr.commons.modelo.datos.models.entity.Producto;
 import com.jgr.servicio.item.cliente.feign.ProductoClienteRest;
 import com.jgr.servicio.item.models.Item;
-import com.jgr.servicio.item.models.Producto;
-
 
 /**
  * The Class ItemServiceFeign.

@@ -15,10 +15,13 @@ import javax.persistence.TemporalType;
 
 /**
  * The Class Producto.
+ * 
+ * ESTA ES LA QUE USABAMOS ANTES DE CREAR EL COMMONS 
+ * 
  */
-@Entity
-@Table(name = "productos")
-public class Producto implements Serializable{
+//@Entity
+//@Table(name = "productos")
+public class ProductoAnterior implements Serializable{
 
 	/** The id. */
 	@Id

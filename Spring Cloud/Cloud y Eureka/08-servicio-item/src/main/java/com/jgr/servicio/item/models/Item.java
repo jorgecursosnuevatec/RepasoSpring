@@ -1,5 +1,7 @@
 package com.jgr.servicio.item.models;
 
+import com.jgr.commons.modelo.datos.models.entity.Producto;
+
 public class Item {
 
 	private Producto producto;

@@ -2,11 +2,10 @@ package com.jgr.servicio.item.models.service;
 
 import java.util.List;
 
+import com.jgr.commons.modelo.datos.models.entity.Producto;
 import com.jgr.servicio.item.models.Item;
-import com.jgr.servicio.item.models.Producto;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ItemService.
  */
