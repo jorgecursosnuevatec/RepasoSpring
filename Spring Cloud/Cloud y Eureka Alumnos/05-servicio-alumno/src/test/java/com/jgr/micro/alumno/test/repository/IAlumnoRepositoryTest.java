@@ -1,6 +1,7 @@
 package com.jgr.micro.alumno.test.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,91 +20,106 @@ import org.springframework.data.domain.Sort.Direction;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
-
 /**
  * The Class IAlumnoRepositoryTest.
  */
 @DataJpaTest
 class IAlumnoRepositoryTest {
 	@Autowired
-	
+
 	private IAlumnoRepository iAlumnoRepository;
-	
-	private static int limite=5;
-	
-	private  List<Alumno> alumnos;
+
+	private static int limite = 5;
+
+	private List<Alumno> alumnosLista;
 
 	/**
-	 * Sets the up.
-	 * Solo una vez para todas las ejecuciones
+	 * Sets the up. Solo una vez para todas las ejecuciones
 	 *
 	 * @throws Exception the exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-		
+
 		Alumno al;
-		alumnos = new ArrayList<>();
-		
-		for (int i=0;i<limite;i++) {
+		alumnosLista = new ArrayList<>();
+
+		for (int i = 0; i < limite; i++) {
 			al = new Alumno();
-			al.setNombre("Nombre"+i);
-			al.setApellido("Apellido"+i);
-			al.setEmail("Email"+i+"@mail.com");
+			al.setNombre("Nombre" + i);
+			al.setApellido("Apellido" + i);
+			al.setEmail("Email" + i + "@mail.com");
 			iAlumnoRepository.save(al);
-			alumnos.add(al);
+			alumnosLista.add(al);
 		}
-		
+
 	}
 
 	/**
 	 * Test find by nombre like ignore case.
 	 */
 	@Test
+	@DisplayName("testFindByNombreLikeIgnoreCase()")
 	void testFindByNombreLikeIgnoreCase() {
-		
-		Alumno al = alumnos.get(limite-1);
-		//le cambio el nombre a un alumno,a ver si lo encuentra		
+
+		Alumno al = alumnosLista.get(limite - 1);
+		// le cambio el nombre a un alumno,a ver si lo encuentra
 		String nombreCambiado = al.getNombre().toLowerCase();
-		List<Alumno> alumnosBuscados =(List<Alumno>)iAlumnoRepository.findByNombreLikeIgnoreCase(nombreCambiado);		
-		Alumno al2 = alumnosBuscados.get(0);		
-		assertEquals(al,al2,()->"no ha encontrado al alumno");
-		
+		List<Alumno> alumnosBuscados = (List<Alumno>) iAlumnoRepository.findByNombreLikeIgnoreCase(nombreCambiado);
+		Alumno al2 = alumnosBuscados.get(0);
+		assertEquals(al, al2, () -> "no ha encontrado al alumno");
+
 	}
 
 	/**
 	 * Test save.
 	 */
 	@Test
+	@DisplayName("testSave()")
 	void testSave() {
-		fail("Not yet implemented"); // TODO
+
+		Alumno al = new Alumno();
+		al.setNombre("NombreNuevo");
+		al.setApellido("ApellidoNuevo");
+		al.setEmail("Email@Mail");
+		Long numUltimo = alumnosLista.get(limite - 1).getIdAlumno();
+		iAlumnoRepository.save(al);
+		Long altaAlumno = iAlumnoRepository.findAll().get(limite - 1).getIdAlumno();
+		assertEquals(numUltimo, altaAlumno, () -> "No se ha dado de alta");
+
 	}
 
 	/**
 	 * Test find by id.
 	 */
 	@Test
+	@DisplayName("testFindById")
 	void testFindById() {
-		
+
 		List<Alumno> listaAlumnosTrabajo = new ArrayList<>();
 		listaAlumnosTrabajo = iAlumnoRepository.findAll(Sort.by(Direction.ASC, "nombre"));
 		Alumno al = listaAlumnosTrabajo.get(0);
-		
+
 		Optional<Alumno> al2 = iAlumnoRepository.findById(al.getIdAlumno());
-		System.out.println("*********************alumno PRESENTE->"+al2.isPresent());
-		System.out.println("\n*********************alumno GET->"+al2.get());
-		
-		assertTrue(al2.isPresent(),()->"El alumno NO existe");
-		assertEquals(al2.get(),al,()->"No es igual que el recuperado de la BBDD");
-		
+		assertTrue(al2.isPresent(), () -> "El alumno NO existe");
+		assertEquals(al2.get(), al, () -> "No es igual que el recuperado de la BBDD");
+
 	}
 
 	/**
 	 * Test delete by id.
 	 */
 	@Test
+	@DisplayName("testDeleteById()")
 	void testDeleteById() {
-		fail("Not yet implemented"); // TODO
+
+		Long ultimoId = alumnosLista.get(limite - 1).getIdAlumno();
+		iAlumnoRepository.deleteById(ultimoId);
+
+		Optional<Alumno> al = iAlumnoRepository.findById(ultimoId);
+		assertFalse(al.isPresent(), () -> "Pues no ha borrado");
+		assertTrue(al.isEmpty(), () -> "no esta vacio el alumno");
+
 	}
 
 }

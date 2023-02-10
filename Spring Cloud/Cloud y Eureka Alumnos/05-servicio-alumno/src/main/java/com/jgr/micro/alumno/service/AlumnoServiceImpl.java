@@ -2,23 +2,21 @@ package com.jgr.micro.alumno.service;
 
 import java.util.Optional;
 
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
-
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Class AlumnoService.
  */
 @Service
-public class AlumnoService implements IAlumnoService {
+@Slf4j // log lombok
+public class AlumnoServiceImpl implements IAlumnoService {
 
 	/** The i alumno repository. */
 	@Autowired
@@ -36,8 +34,6 @@ public class AlumnoService implements IAlumnoService {
 		return iAlumnoRepository.findAll();
 	}
 
-
-	
 	/**
 	 * Find by id.
 	 *
@@ -85,8 +81,8 @@ public class AlumnoService implements IAlumnoService {
 	@Override
 	@Transactional
 	public Iterable<Alumno> findByNombreLikeIgnoreCase(String nombreAlumno) {
+		log.debug("en findNombreLikeIgnoreCase" + nombreAlumno);
 		return iAlumnoRepository.findByNombreLikeIgnoreCase(nombreAlumno);
 	}
 
-	
 }

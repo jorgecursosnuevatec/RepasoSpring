@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-09 COMMONS EN LOS DOS MICROSERVICIOS"
+message="$(date)2023-02-10 EMPEZANDO A PROBAR LA CAPA DE SERVICIO"
 fi
 
 git add .
