@@ -1,5 +1,17 @@
 package com.jgr.micro.alumno.test.service;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,60 +19,153 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 import com.jgr.micro.alumno.service.AlumnoServiceImpl;
-import com.jgr.micro.alumno.service.IAlumnoService;
 
 
+
+//https://stackoverflow.com/questions/60308578/what-is-the-difference-between-extendwithspringextension-class-and-extendwit
+/**
+ * The Class AlumnoServiceImplTest.
+ * 
+ * USO MOCKITOEXTENSION 
+ * MARCO COMO LENIENT ALGUNOS METODOS PARA QUE NO DE ERROR
+ */
+//@Slf4j 
 @ExtendWith(MockitoExtension.class)
+
 class AlumnoServiceImplTest {
 	
+	/** The Constant log. */
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MockitoExtension.class);
+	
+	/** The i alumno repository. */
 	@Mock
 	IAlumnoRepository iAlumnoRepository;
 	
-	 @InjectMocks
+	 /** The alumno service. */
+ 	@InjectMocks
 	 AlumnoServiceImpl alumnoService;
+	 
+	 /** The al 1. */
+ 	Optional<Alumno> al1;
+	 
+ 	/** The al 2. */
+ 	Optional<Alumno> al2;
+ 	Alumno al3;
+ 
+	 /** The alumnos lista. */
+ 	List<Alumno> alumnosLista;
+	 
+ 	/** The limite. */
+ 	int limite = 3;
 
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 		
+		Alumno al;
+		alumnosLista = new ArrayList<>();
+		
+		for (int i=0; i<limite;i++) {
+			al = new Alumno();
+			al.setIdAlumno(Long.valueOf(i));
+			al.setNombre("Nombre"+i);
+			al.setApellido("Apellido"+i);
+			al.setCreateAt(new Date());
+			al.setEmail("email"+i+"@mail.com");
+			alumnosLista.add(al);
+		}
+		
+		al1=Optional.ofNullable(alumnosLista.get(1));
+		al2=Optional.ofNullable(alumnosLista.get(2));
+		
+		al3 = new Alumno();
+		al3.setIdAlumno(Long.valueOf(3));
+		al3.setNombre("Nombre"+3);
+		al3.setApellido("Apellido"+3);
+		al3.setCreateAt(new Date());
+		al3.setEmail("email"+3+"@mail.com");
+		
+		
+		lenient().when(iAlumnoRepository.findAll()).thenReturn(alumnosLista);
+		lenient().when(iAlumnoRepository.findById(1L)).thenReturn(al1);
+		lenient().when(iAlumnoRepository.findById(2L)).thenReturn(al2);
+		
+		//cuando hago un save de cualquier alumno le digo que devuelva el 3,igual que
+		//el que hemos creado aqui como numero 3 
+		lenient().when(iAlumnoRepository.save(any(Alumno.class))).thenReturn(al3);
+		
+		lenient().when(iAlumnoRepository.findByNombreLikeIgnoreCase(any(String.class))).thenReturn(alumnosLista);
+		
 		
 	}
 
+	/**
+	 * Test find all.
+	 */
 	@Test
 	@DisplayName("testFindAll()")
 	void testFindAll() {
-		alumnoService.findAll();
+		
+		//log.debug("En testFindAll"+alumnoService.findAll());
+		log.warn("En testFindAll"+alumnoService.findAll());
+		assertEquals(alumnoService.findAll(),alumnosLista,()->"No son iguales");
+		
 	}
 
 	
-	/*
+	/**
+	 * Test find by id.
+	 */
 	@Test
 	@DisplayName("testFindById()")
 	void testFindById() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(alumnoService.findById(1L),al1,()->"No son iguales");
 	}
 
+	/**
+	 * Test save.
+	 */
 	@Test
 	@DisplayName("testSave()")
 	void testSave() {
-		fail("Not yet implemented"); // TODO
+		
+		//puede dar distinto por la fecha
+		Alumno alNuevo = al3;		
+		assertTrue(alumnoService.save(alNuevo).equals(al3),
+				()->"No son iguales"+ alumnoService.save(alNuevo) + " no es igual"+ al3);
+		
+	
 	}
 
+	/**
+	 * Test delete by id.
+	 */
 	@Test
 	@DisplayName("testDeleteById()")
 	void testDeleteById() {
-		fail("Not yet implemented"); // TODO
+		
 	}
 
+	/**
+	 * Test find by nombre like ignore case.
+	 */
 	@Test
 	@DisplayName("testFindByNombreLikeIgnoreCase()")
 	void testFindByNombreLikeIgnoreCase() {
-		fail("Not yet implemented"); // TODO
+		
+		assertEquals(alumnoService.findAll(),alumnosLista,()->"No son iguales");
+		
 	}
+	
+	/*
 */
 }

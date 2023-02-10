@@ -20,17 +20,22 @@ import org.springframework.data.domain.Sort.Direction;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class IAlumnoRepositoryTest.
  */
 @DataJpaTest
 class IAlumnoRepositoryTest {
+	
+	/** The i alumno repository. */
 	@Autowired
 
 	private IAlumnoRepository iAlumnoRepository;
 
+	/** The limite. */
 	private static int limite = 5;
 
+	/** The alumnos lista. */
 	private List<Alumno> alumnosLista;
 
 	/**
