@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "ddcfcc8e-a069-41ae-9243-1c0f67f07774",
+		"name": "Cloud y Eureka Alumnos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20953727"
+	},
+	"item": [
+		{
+			"name": "Alumnos",
+			"item": [
+				{
+					"name": "ListaAlumnos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/id/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListaAlumnoNombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/nombre/nombre",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"nombre",
+								"nombre"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

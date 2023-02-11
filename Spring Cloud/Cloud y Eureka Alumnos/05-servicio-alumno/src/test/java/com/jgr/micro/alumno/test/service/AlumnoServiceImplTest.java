@@ -1,6 +1,5 @@
 package com.jgr.micro.alumno.test.service;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -25,43 +24,40 @@ import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 import com.jgr.micro.alumno.service.AlumnoServiceImpl;
 
-
-
 //https://stackoverflow.com/questions/60308578/what-is-the-difference-between-extendwithspringextension-class-and-extendwit
 /**
  * The Class AlumnoServiceImplTest.
  * 
- * USO MOCKITOEXTENSION 
- * MARCO COMO LENIENT ALGUNOS METODOS PARA QUE NO DE ERROR
+ * USO MOCKITOEXTENSION MARCO COMO LENIENT ALGUNOS METODOS PARA QUE NO DE ERROR
  */
 //@Slf4j 
 @ExtendWith(MockitoExtension.class)
 
 class AlumnoServiceImplTest {
-	
+
 	/** The Constant log. */
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(MockitoExtension.class);
-	
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AlumnoServiceImplTest.class);
+
 	/** The i alumno repository. */
 	@Mock
 	IAlumnoRepository iAlumnoRepository;
-	
-	 /** The alumno service. */
- 	@InjectMocks
-	 AlumnoServiceImpl alumnoService;
-	 
-	 /** The al 1. */
- 	Optional<Alumno> al1;
-	 
- 	/** The al 2. */
- 	Optional<Alumno> al2;
- 	Alumno al3;
- 
-	 /** The alumnos lista. */
- 	List<Alumno> alumnosLista;
-	 
- 	/** The limite. */
- 	int limite = 3;
+
+	/** The alumno service. */
+	@InjectMocks
+	AlumnoServiceImpl alumnoService;
+
+	/** The al 1. */
+	Optional<Alumno> al1;
+
+	/** The al 2. */
+	Optional<Alumno> al2;
+	Alumno al3;
+
+	/** The alumnos lista. */
+	List<Alumno> alumnosLista;
+
+	/** The limite. */
+	int limite = 3;
 
 	/**
 	 * Sets the up.
@@ -70,42 +66,40 @@ class AlumnoServiceImplTest {
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
-		
+
 		Alumno al;
 		alumnosLista = new ArrayList<>();
-		
-		for (int i=0; i<limite;i++) {
+
+		for (int i = 0; i < limite; i++) {
 			al = new Alumno();
 			al.setIdAlumno(Long.valueOf(i));
-			al.setNombre("Nombre"+i);
-			al.setApellido("Apellido"+i);
+			al.setNombre("Nombre" + i);
+			al.setApellido("Apellido" + i);
 			al.setCreateAt(new Date());
-			al.setEmail("email"+i+"@mail.com");
+			al.setEmail("email" + i + "@mail.com");
 			alumnosLista.add(al);
 		}
-		
-		al1=Optional.ofNullable(alumnosLista.get(1));
-		al2=Optional.ofNullable(alumnosLista.get(2));
-		
+
+		al1 = Optional.ofNullable(alumnosLista.get(1));
+		al2 = Optional.ofNullable(alumnosLista.get(2));
+
 		al3 = new Alumno();
 		al3.setIdAlumno(Long.valueOf(3));
-		al3.setNombre("Nombre"+3);
-		al3.setApellido("Apellido"+3);
+		al3.setNombre("Nombre" + 3);
+		al3.setApellido("Apellido" + 3);
 		al3.setCreateAt(new Date());
-		al3.setEmail("email"+3+"@mail.com");
-		
-		
+		al3.setEmail("email" + 3 + "@mail.com");
+
 		lenient().when(iAlumnoRepository.findAll()).thenReturn(alumnosLista);
 		lenient().when(iAlumnoRepository.findById(1L)).thenReturn(al1);
 		lenient().when(iAlumnoRepository.findById(2L)).thenReturn(al2);
-		
-		//cuando hago un save de cualquier alumno le digo que devuelva el 3,igual que
-		//el que hemos creado aqui como numero 3 
+
+		// cuando hago un save de cualquier alumno le digo que devuelva el 3,igual que
+		// el que hemos creado aqui como numero 3
 		lenient().when(iAlumnoRepository.save(any(Alumno.class))).thenReturn(al3);
-		
-		lenient().when(iAlumnoRepository.findByNombreLikeIgnoreCase(any(String.class))).thenReturn(alumnosLista);
-		
-		
+
+		lenient().when(iAlumnoRepository.findByNombreContainsIgnoreCase(any(String.class))).thenReturn(alumnosLista);
+
 	}
 
 	/**
@@ -114,21 +108,20 @@ class AlumnoServiceImplTest {
 	@Test
 	@DisplayName("testFindAll()")
 	void testFindAll() {
-		
-		//log.debug("En testFindAll"+alumnoService.findAll());
-		log.warn("En testFindAll"+alumnoService.findAll());
-		assertEquals(alumnoService.findAll(),alumnosLista,()->"No son iguales");
-		
+
+		// log.debug("En testFindAll"+alumnoService.findAll());
+		log.warn("En testFindAll" + alumnoService.findAll());
+		assertEquals(alumnoService.findAll(), alumnosLista, () -> "No son iguales");
+
 	}
 
-	
 	/**
 	 * Test find by id.
 	 */
 	@Test
 	@DisplayName("testFindById()")
 	void testFindById() {
-		assertEquals(alumnoService.findById(1L),al1,()->"No son iguales");
+		assertEquals(alumnoService.findById(1L), al1, () -> "No son iguales");
 	}
 
 	/**
@@ -137,13 +130,12 @@ class AlumnoServiceImplTest {
 	@Test
 	@DisplayName("testSave()")
 	void testSave() {
-		
-		//puede dar distinto por la fecha
-		Alumno alNuevo = al3;		
+
+		// puede dar distinto por la fecha
+		Alumno alNuevo = al3;
 		assertTrue(alumnoService.save(alNuevo).equals(al3),
-				()->"No son iguales"+ alumnoService.save(alNuevo) + " no es igual"+ al3);
-		
-	
+				() -> "No son iguales" + alumnoService.save(alNuevo) + " no es igual" + al3);
+
 	}
 
 	/**
@@ -152,7 +144,7 @@ class AlumnoServiceImplTest {
 	@Test
 	@DisplayName("testDeleteById()")
 	void testDeleteById() {
-		
+
 	}
 
 	/**
@@ -161,11 +153,11 @@ class AlumnoServiceImplTest {
 	@Test
 	@DisplayName("testFindByNombreLikeIgnoreCase()")
 	void testFindByNombreLikeIgnoreCase() {
-		
-		assertEquals(alumnoService.findAll(),alumnosLista,()->"No son iguales");
-		
+
+		assertEquals(alumnoService.findAll(), alumnosLista, () -> "No son iguales");
+
 	}
-	
+
 	/*
-*/
+	 */
 }

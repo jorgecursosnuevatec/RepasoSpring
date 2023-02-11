@@ -80,9 +80,9 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	 */
 	@Override
 	@Transactional
-	public Iterable<Alumno> findByNombreLikeIgnoreCase(String nombreAlumno) {
+	public Iterable<Alumno> findByNombreContainsIgnoreCase(String nombreAlumno) {
 		log.debug("en findNombreLikeIgnoreCase" + nombreAlumno);
-		return iAlumnoRepository.findByNombreLikeIgnoreCase(nombreAlumno);
+		return iAlumnoRepository.findByNombreContainsIgnoreCase(nombreAlumno);
 	}
 
 }

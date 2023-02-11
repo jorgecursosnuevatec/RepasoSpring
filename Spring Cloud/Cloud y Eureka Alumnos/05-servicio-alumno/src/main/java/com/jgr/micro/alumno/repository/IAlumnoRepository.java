@@ -21,7 +21,7 @@ public interface IAlumnoRepository extends JpaRepository<Alumno, Long>{
 	 * @param nombreAlumno the nombre alumno
 	 * @return the iterable
 	 */
-	Iterable<Alumno> findByNombreLikeIgnoreCase(String nombreAlumno);
+	Iterable<Alumno> findByNombreContainsIgnoreCase(String nombreAlumno);
 	
 	/**
 	 * Find all order by by nombre.

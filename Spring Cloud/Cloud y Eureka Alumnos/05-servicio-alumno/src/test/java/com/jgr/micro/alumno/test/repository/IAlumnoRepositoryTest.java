@@ -3,7 +3,6 @@ package com.jgr.micro.alumno.test.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +19,15 @@ import org.springframework.data.domain.Sort.Direction;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class IAlumnoRepositoryTest.
  */
 @DataJpaTest
 class IAlumnoRepositoryTest {
+	/** The Constant log. */
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(IAlumnoRepositoryTest.class);
 	
 	/** The i alumno repository. */
 	@Autowired
@@ -70,7 +72,7 @@ class IAlumnoRepositoryTest {
 		Alumno al = alumnosLista.get(limite - 1);
 		// le cambio el nombre a un alumno,a ver si lo encuentra
 		String nombreCambiado = al.getNombre().toLowerCase();
-		List<Alumno> alumnosBuscados = (List<Alumno>) iAlumnoRepository.findByNombreLikeIgnoreCase(nombreCambiado);
+		List<Alumno> alumnosBuscados = (List<Alumno>) iAlumnoRepository.findByNombreContainsIgnoreCase(nombreCambiado);
 		Alumno al2 = alumnosBuscados.get(0);
 		assertEquals(al, al2, () -> "no ha encontrado al alumno");
 

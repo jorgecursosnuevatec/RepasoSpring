@@ -30,9 +30,7 @@ public interface IAlumnoService {
 	 * @param nombreAlumno the nombre alumno
 	 * @return the iterable
 	 */
-	public Iterable<Alumno> findByNombreLikeIgnoreCase(String nombreAlumno);
-	
-	
+	public Iterable<Alumno> findByNombreContainsIgnoreCase(String nombreAlumno);
 	
 
 	/**
