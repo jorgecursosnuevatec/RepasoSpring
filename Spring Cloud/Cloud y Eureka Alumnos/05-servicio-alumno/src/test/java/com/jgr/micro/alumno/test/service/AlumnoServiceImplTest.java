@@ -74,7 +74,7 @@ class AlumnoServiceImplTest {
 			al = new Alumno();
 			al.setIdAlumno(Long.valueOf(i));
 			al.setNombre("Nombre" + i);
-			al.setApellido("Apellido" + i);
+			al.setApellidos("Apellido" + i);
 			al.setCreateAt(new Date());
 			al.setEmail("email" + i + "@mail.com");
 			alumnosLista.add(al);
@@ -86,7 +86,7 @@ class AlumnoServiceImplTest {
 		al3 = new Alumno();
 		al3.setIdAlumno(Long.valueOf(3));
 		al3.setNombre("Nombre" + 3);
-		al3.setApellido("Apellido" + 3);
+		al3.setApellidos("Apellido" + 3);
 		al3.setCreateAt(new Date());
 		al3.setEmail("email" + 3 + "@mail.com");
 

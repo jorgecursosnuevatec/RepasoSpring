@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-10 EMPEZANDO A PROBAR LA CAPA DE SERVICIO"
+message="$(date)2023-02-11 TERMINADO CONTROLLER"
 fi
 
 git add .

@@ -35,7 +35,7 @@ public class Alumno {
 	private String nombre;
 	
 	/** The apellido. */
-	private String apellido;
+	private String apellidos;
 	
 	/** The email. */
 	private String email;

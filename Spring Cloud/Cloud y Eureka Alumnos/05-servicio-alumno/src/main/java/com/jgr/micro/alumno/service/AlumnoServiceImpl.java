@@ -79,10 +79,38 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	 * @return the iterable
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly=true)
 	public Iterable<Alumno> findByNombreContainsIgnoreCase(String nombreAlumno) {
 		log.debug("en findNombreLikeIgnoreCase" + nombreAlumno);
 		return iAlumnoRepository.findByNombreContainsIgnoreCase(nombreAlumno);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Iterable<Alumno> buscaNombreOApellido(String term) {
+		
+		return iAlumnoRepository.buscaNombreOApellido(term);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public Iterable<Alumno> findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(String nombre,
+			String apellido) {
+		return iAlumnoRepository.findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(nombre,apellido);
+		
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Iterable<Alumno> findAllById(Iterable<Long> ids) {
+		return iAlumnoRepository.findAllById(ids);
+		
+	}
+
+	@Override
+	@Transactional
+	public void eliminarCursoAlumnoPorId(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

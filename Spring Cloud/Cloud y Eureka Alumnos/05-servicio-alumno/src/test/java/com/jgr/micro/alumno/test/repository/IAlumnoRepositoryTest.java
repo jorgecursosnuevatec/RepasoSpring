@@ -54,7 +54,7 @@ class IAlumnoRepositoryTest {
 		for (int i = 0; i < limite; i++) {
 			al = new Alumno();
 			al.setNombre("Nombre" + i);
-			al.setApellido("Apellido" + i);
+			al.setApellidos("Apellido" + i);
 			al.setEmail("Email" + i + "@mail.com");
 			iAlumnoRepository.save(al);
 			alumnosLista.add(al);
@@ -87,7 +87,7 @@ class IAlumnoRepositoryTest {
 
 		Alumno al = new Alumno();
 		al.setNombre("NombreNuevo");
-		al.setApellido("ApellidoNuevo");
+		al.setApellidos("ApellidoNuevo");
 		al.setEmail("Email@Mail");
 		Long numUltimo = alumnosLista.get(limite - 1).getIdAlumno();
 		iAlumnoRepository.save(al);

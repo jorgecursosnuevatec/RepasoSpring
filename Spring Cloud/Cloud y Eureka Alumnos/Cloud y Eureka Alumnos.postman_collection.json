@@ -64,6 +64,96 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "AlumnoActualizaID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAlumno\": 1,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoBuscaNombreoApellido",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAlumno\": 1,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/nombreoapellido/Apellido0",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"nombreoapellido",
+								"Apellido0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoBuscaNombreoApellidoIgnoraMayusculas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAlumno\": 1,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/nombreoapellidoignoramayusculas/NOMBRE/APELLIDO",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"nombreoapellidoignoramayusculas",
+								"NOMBRE",
+								"APELLIDO"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
