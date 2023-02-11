@@ -30,10 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.IAlumnoService;
 
-
-
-
-
+// TODO: Auto-generated Javadoc
 /**
  * The Class AlumnoController.
  */
@@ -118,7 +115,14 @@ public class AlumnoController {
 		return ResponseEntity.notFound().build();
 
 	}
-	
+
+	/**
+	 * Actualiza alumno.
+	 *
+	 * @param al the al
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<?> actualizaAlumno(@RequestBody Alumno al, @PathVariable Long id) {
 
@@ -126,7 +130,7 @@ public class AlumnoController {
 
 		if (!o.isPresent()) {
 			log.debug("Microservicio Alumno->actualizaAlumno");
-			
+
 			return ResponseEntity.notFound().build();
 		}
 		Alumno alDb = o.get();
@@ -138,7 +142,7 @@ public class AlumnoController {
 		return ResponseEntity.ok().body(alumnoService.save(alDb));
 
 	}
-	
+
 	/**
 	 * Busca nombre or apellido.
 	 *
@@ -148,8 +152,14 @@ public class AlumnoController {
 	@GetMapping("/nombreoapellido/{term}")
 	public ResponseEntity<?> buscaNombreOrApellido(@PathVariable String term) {
 
-		return ResponseEntity.ok().body(alumnoService.buscaNombreOApellido(term));
+		List<Alumno> alumnos = (List<Alumno>) alumnoService.buscaNombreOApellido(term);
 
+		if (alumnos.size() > 0) {
+			return ResponseEntity.ok().body(alumnos);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+		}
 	}
 
 	/**
@@ -174,7 +184,7 @@ public class AlumnoController {
 		}
 
 	}
-	
+
 	/**
 	 * Ver foto.
 	 *
@@ -212,8 +222,8 @@ public class AlumnoController {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		/*
-		return super.creaEntidad(alumno, result);
-		*/
+		 * return super.creaEntidad(alumno, result);
+		 */
 	}
 
 	/**
@@ -229,35 +239,41 @@ public class AlumnoController {
 	@PutMapping("/editar-con-foto/{id}")
 	public ResponseEntity<?> editarConFoto(@Valid Alumno alumno, BindingResult result, @PathVariable Long id,
 			@RequestParam MultipartFile archivo) throws IOException {
-/*
-		if (result.hasErrors()) {
-			return this.validar(result);
-		}
+		/*
+		 * if (result.hasErrors()) { return this.validar(result); }
+		 * 
+		 * Optional<Alumno> o = alumnoService.findById(id);
+		 * 
+		 * if (o.isEmpty()) { return ResponseEntity.notFound().build(); }
+		 * 
+		 * Alumno alumnoDb = o.get(); alumnoDb.setNombre(alumno.getNombre());
+		 * alumnoDb.setApellidos(alumno.getApellidos());
+		 * alumnoDb.setEmail(alumno.getEmail());
+		 * 
+		 * if (!archivo.isEmpty()) { alumnoDb.setFoto(archivo.getBytes()); }
+		 * 
+		 * return
+		 * ResponseEntity.status(HttpStatus.CREATED).body(alumnoService.save(alumnoDb));
+		 */
 
-		Optional<Alumno> o = alumnoService.findById(id);
-
-		if (o.isEmpty()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Alumno alumnoDb = o.get();
-		alumnoDb.setNombre(alumno.getNombre());
-		alumnoDb.setApellidos(alumno.getApellidos());
-		alumnoDb.setEmail(alumno.getEmail());
-
-		if (!archivo.isEmpty()) {
-			alumnoDb.setFoto(archivo.getBytes());
-		}
-
-		return ResponseEntity.status(HttpStatus.CREATED).body(alumnoService.save(alumnoDb));
-		*/
-		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
-	
+	/**
+	 * Guardar Alumno.
+	 * para probar MOCKITO antes de incluir el resto de microservicios que tienen el modelo de datos
+	 *
+	 * @param alumno the alumno
+	 * @return the response entity
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	@PostMapping("/guardaNormal")
+	public ResponseEntity<?> guardarAlumno(@Valid Alumno alumno) throws IOException {
+		
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(alumnoService.save(alumno));
+	}
 
 	
-
 
 }

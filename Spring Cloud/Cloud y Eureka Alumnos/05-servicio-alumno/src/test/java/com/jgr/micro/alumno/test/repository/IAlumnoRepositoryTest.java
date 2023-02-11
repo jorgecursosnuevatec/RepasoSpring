@@ -3,8 +3,10 @@ package com.jgr.micro.alumno.test.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +22,7 @@ import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class IAlumnoRepositoryTest.
  */
@@ -128,5 +130,65 @@ class IAlumnoRepositoryTest {
 		assertTrue(al.isEmpty(), () -> "no esta vacio el alumno");
 
 	}
+	
+	@Test
+	@DisplayName("testFindByNombreContainsIgnoreCase()")
+	void testFindByNombreContainsIgnoreCase() {
+		
+		Alumno al = new Alumno();
+		al.setNombre("NOMBREDELNUEVOALUMNO");
+		al.setApellidos("APELLIDODELNUEVOALUMNO");
+		al.setEmail("emailnuevo@mail.com");
+		al.setCreateAt(new Date());
+		Alumno alGuardado=iAlumnoRepository.save(al);
+		
+		// le cambio el nombre a un alumno,a ver si lo encuentra
+		String nombreCambiado = al.getNombre().toLowerCase();
+		
+		Alumno alNuevo  = ((List<Alumno>) iAlumnoRepository.findByNombreContainsIgnoreCase(nombreCambiado)).get(0);
+
+		assertEquals(alGuardado, alNuevo,()->"No son iguales");
+		
+		
+	}
+
+	/**
+	 * Test method for {@link com.jgr.micro.alumno.repository.IAlumnoRepository#buscaNombreOApellido(java.lang.String)}.
+	 */
+	@Test
+	void testBuscaNombreOApellido() {
+		Alumno al = new Alumno();
+		al.setNombre("NOMBREDELNUEVOALUMNO");
+		al.setApellidos("APELLIDODELNUEVOALUMNO");
+		al.setEmail("emailnuevo@mail.com");
+		al.setCreateAt(new Date());
+		Alumno alGuardado=iAlumnoRepository.save(al);
+				
+		Alumno alNuevo  = ((List<Alumno>) iAlumnoRepository.buscaNombreOApellido(alGuardado.getApellidos())).get(0);
+				
+
+		assertEquals(alGuardado, alNuevo,()->"No son iguales");
+		
+	}
+
+	/**
+	 * Test method for {@link com.jgr.micro.alumno.repository.IAlumnoRepository#findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	void testFindByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase() {
+		
+		Alumno al = new Alumno();
+		al.setNombre("NOMBREDELNUEVOALUMNO");
+		al.setApellidos("APELLIDODELNUEVOALUMNO");
+		al.setEmail("emailnuevo@mail.com");
+		al.setCreateAt(new Date());
+		Alumno alGuardado=iAlumnoRepository.save(al);
+				
+		Alumno alNuevo  = ((List<Alumno>) iAlumnoRepository
+				.findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(al.getNombre(),al.getApellidos())).get(0);
+
+		assertEquals(alGuardado, alNuevo,()->"No son iguales");
+	}
+
 
 }

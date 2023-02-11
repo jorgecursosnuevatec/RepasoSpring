@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-10 INICIO RESTCONTROLLER ALUMNOS"
+message="$(date)2023-02-11 SEGUIR CON PRUEBAS INTEGRACION WEBTESTCLIENT"
 fi
 
 start=`date +%s`

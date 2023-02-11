@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * The Class MicroAlumnoApplication.
  * 
- * para conectar h2
- *#la url es http://localhost:8080/h2-console/
- *##la jdbc url es jdbc:h2:mem:alumnos
- * 
+ *H2 
+ *la url es http://localhost:8080/h2-console/
+ *la jdbc url es jdbc:h2:mem:alumnos
+ *
+ *SWAGGER 
+ * http://localhost:8080/swagger-ui/index.html
  * 
  */
 @SpringBootApplication

@@ -21,6 +21,8 @@ drivers/
 
 ##por si acaso hay un log
 *.log
+logs/
+*logs/
 
 ##quito lo que hace maven,que se lo baje todo de nuevo
 *.mvn
