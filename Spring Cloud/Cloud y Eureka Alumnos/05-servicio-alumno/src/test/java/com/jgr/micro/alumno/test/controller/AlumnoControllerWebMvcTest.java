@@ -3,17 +3,18 @@
  */
 package com.jgr.micro.alumno.test.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.hamcrest.Matchers.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,8 +34,9 @@ import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.AlumnoServiceImpl;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * The Class AlumnoControllerTest.
+ * The Class AlumnoControllerWebMvcTest.
  * 
  * se simula la llamada al controlador,MOCK, NO es real
  * tambien se simula el servicio
@@ -46,27 +47,34 @@ import com.jgr.micro.alumno.service.AlumnoServiceImpl;
  */
 
 @WebMvcTest(AlumnoController.class)
-class AlumnoControllerTest {
+class AlumnoControllerWebMvcTest {
 	
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AlumnoControllerTest.class);
+	/** The Constant log. */
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AlumnoControllerWebMvcTest.class);
 	
+	/** The moc mvc. */
 	@Autowired
 	private MockMvc mocMvc;
 	
+	/** The alumno service. */
 	@MockBean
 	private AlumnoServiceImpl alumnoService;
 	
+	/** The limite. */
 	private static int limite = 5;
 
 	/** The alumnos lista. */
 	private List<Alumno> alumnosLista;
 	
+	/** The object mapper. */
 	//para convertir de json a objeto,lo inicializamos en setup
 	private ObjectMapper objectMapper;
 
 
 	/**
-	 * @throws java.lang.Exception
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
 	 */
 	@BeforeEach
 	void setUp() throws Exception {
@@ -88,9 +96,11 @@ class AlumnoControllerTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumno.controller.AlumnoController#listarTodos()}.
-	 * @throws Exception 
-	 * @throws JsonProcessingException 
+	 * Test method for
+	 * {@link com.jgr.micro.alumno.controller.AlumnoController#listarTodos()}.
+	 *
+	 * @throws JsonProcessingException the json processing exception
+	 * @throws Exception               the exception
 	 */
 	@Test
 	@DisplayName("testListarTodos()")
@@ -112,8 +122,10 @@ class AlumnoControllerTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumno.controller.AlumnoController#buscarPorId(java.lang.Long)}.
-	 * @throws Exception 
+	 * Test method for
+	 * {@link com.jgr.micro.alumno.controller.AlumnoController#buscarPorId(java.lang.Long)}.
+	 *
+	 * @throws Exception the exception
 	 */
 	@Test
 	@DisplayName("testBuscarPorId()")
@@ -157,6 +169,11 @@ class AlumnoControllerTest {
 		
 	}
 	
+	/**
+	 * Test guardar.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test
 	@DisplayName("testGuardar()")
     void testGuardar() throws Exception {
