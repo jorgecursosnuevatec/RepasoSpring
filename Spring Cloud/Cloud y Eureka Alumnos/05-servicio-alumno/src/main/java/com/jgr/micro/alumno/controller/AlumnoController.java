@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.jgr.micro.alumno.controller;
 
 import java.io.IOException;
@@ -8,16 +11,14 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.IAlumnoService;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -72,8 +74,15 @@ public class AlumnoController {
 	 */
 	@GetMapping
 	public ResponseEntity<?> listarTodos() {
+		
+		List<Alumno> al = (List<Alumno>) alumnoService.findAll();
 
-		return ResponseEntity.ok(alumnoService.findAll());
+		if (al.size() > 0) {
+			return ResponseEntity.ok(al);
+		}
+
+		return ResponseEntity.notFound().build();
+		
 
 	}
 
@@ -268,12 +277,33 @@ public class AlumnoController {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	@PostMapping("/guardaNormal")
-	public ResponseEntity<?> guardarAlumno(@Valid Alumno alumno) throws IOException {
+	public ResponseEntity<?> guardarAlumno(@RequestBody Alumno alumno) throws IOException {
+		
+		System.out.println("REPOSITORIO GUARDO ALUMNO"+alumno);
 		
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(alumnoService.save(alumno));
 	}
+	
+	/**
+	 * Eliminar alumno id.
+	 *
+	 * @param idAlumno the id alumno
+	 * @return the response entity
+	 */
+	@DeleteMapping("/{idAlumno}")
 
+	public ResponseEntity<?> eliminarAlumnoId(@PathVariable Long idAlumno){
+		
+		
+		
+		
+		alumnoService.deleteById(idAlumno);
+		
+		return ResponseEntity.noContent().build();
+		
+	}
+	
 	
 
 }

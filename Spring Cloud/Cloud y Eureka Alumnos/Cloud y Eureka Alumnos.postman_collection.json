@@ -154,6 +154,60 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "AlumnoGuardaNormal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAlumno\": null,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/guardaNormal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guardaNormal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoBorraID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

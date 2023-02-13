@@ -1,10 +1,12 @@
+/*
+ * 
+ */
 package com.jgr.micro.alumno.test.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,12 +20,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 import com.jgr.micro.alumno.service.AlumnoServiceImpl;
 
+// TODO: Auto-generated Javadoc
 //https://stackoverflow.com/questions/60308578/what-is-the-difference-between-extendwithspringextension-class-and-extendwit
 /**
  * The Class AlumnoServiceImplTest.
@@ -51,6 +53,8 @@ class AlumnoServiceImplTest {
 
 	/** The al 2. */
 	Optional<Alumno> al2;
+	
+	/** The al 3. */
 	Alumno al3;
 
 	/** The alumnos lista. */
@@ -135,6 +139,8 @@ class AlumnoServiceImplTest {
 		Alumno alNuevo = al3;
 		assertTrue(alumnoService.save(alNuevo).equals(al3),
 				() -> "No son iguales" + alumnoService.save(alNuevo) + " no es igual" + al3);
+		
+		
 
 	}
 

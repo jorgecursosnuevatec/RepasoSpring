@@ -2,12 +2,7 @@ package com.jgr.micro.alumno.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
-import org.springframework.stereotype.Service;
-
 import com.jgr.micro.alumno.entity.Alumno;
-import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
 // TODO: Auto-generated Javadoc
 /**
