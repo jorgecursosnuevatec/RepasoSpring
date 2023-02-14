@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-14 CREADO GATEWAY"
+message="$(date)2023-02-14 CREADOS GENERICOS DE CONTROLADOR Y DE CAPA DE SERVICIO"
 fi
 
 start=`date +%s`

@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.jgr.servicio.eureka</groupId>
 	<artifactId>05-servicio-eureka</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>V1</version>
 	<name>05-servicio-eureka</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

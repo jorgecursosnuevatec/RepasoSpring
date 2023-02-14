@@ -1,6 +1,3 @@
-/*
- * 
- */
 package com.jgr.micro.alumno.controller;
 
 import java.io.IOException;
@@ -11,14 +8,12 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,24 +23,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jgr.controller.generico.ControladorGenerico;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.IAlumnoService;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AlumnoController.
+ * HEREDA del generico controller que es el que tiene los metodos comunes, leer todos,buscar por id,borrar e insertar
+ * 
+ * como parametros el generico controller recibe el objeto y la capa de servicio
+ * 
+ * como HEREDA de ControladorGenerico no tenemos que inyectar la dependencia de la capa de servicio,
+ * va a tomar la definida en ControladorGenerico 
+ * SUSTITUIMOS LA INSTANCIA DE LA CAPA DE SERVICIO QUE TENEMOS EN ESTE MICROSERVICIO POR LA QUE HEREDAMOS
+ * DE GENERICO-SERVICE, que se llama  
+ * 
  */
 @RestController
-public class AlumnoController {
+public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService>{
 
 	/** The Constant log. */
 	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AlumnoController.class);
 
-	/** The alumno service. */
-	@Autowired
-	IAlumnoService alumnoService;
-
+	
 	/**
 	 * Inicializar.
 	 */
@@ -61,61 +63,18 @@ public class AlumnoController {
 			al.setNombre("Nombre" + i);
 			al.setApellidos("Apellido" + i);
 			al.setEmail("Email" + i + "@mail.com");
-			alumnoService.save(al);
+			servicioDeGenericoService.save(al);
 			alumnosLista.add(al);
 		}
 
 	}
 
-	/**
-	 * Listar todos.
-	 *
-	 * @return the response entity
-	 */
-	@GetMapping
-	public ResponseEntity<?> listarTodos() {
-		
-		List<Alumno> al = (List<Alumno>) alumnoService.findAll();
-
-		if (al.size() > 0) {
-			return ResponseEntity.ok(al);
-		}
-
-		return ResponseEntity.notFound().build();
-		
-
-	}
-
-	/**
-	 * Buscar por id.
-	 *
-	 * @param idAlumno the id alumno
-	 * @return the response entity
-	 */
-	@GetMapping("id/{idAlumno}")
-	public ResponseEntity<?> buscarPorId(@PathVariable Long idAlumno) {
-
-		Optional<Alumno> al = alumnoService.findById(idAlumno);
-
-		if (al.isPresent()) {
-			return ResponseEntity.ok(al.get());
-
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-
-	}
-
-	/**
-	 * Find by nombre like ignore case.
-	 *
-	 * @param nombreAlumno the nombre alumno
-	 * @return the response entity
-	 */
+	
+	
 	@GetMapping("nombre/{nombreAlumno}")
 	public ResponseEntity<?> findByNombreLikeIgnoreCase(@PathVariable String nombreAlumno) {
 
-		List<Alumno> al = (List<Alumno>) alumnoService.findByNombreContainsIgnoreCase(nombreAlumno);
+		List<Alumno> al = (List<Alumno>) servicioDeGenericoService.findByNombreContainsIgnoreCase(nombreAlumno);
 
 		if (al.size() > 0) {
 			return ResponseEntity.ok(al);
@@ -125,17 +84,11 @@ public class AlumnoController {
 
 	}
 
-	/**
-	 * Actualiza alumno.
-	 *
-	 * @param al the al
-	 * @param id the id
-	 * @return the response entity
-	 */
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> actualizaAlumno(@RequestBody Alumno al, @PathVariable Long id) {
 
-		Optional<Alumno> o = alumnoService.findById(id);
+		Optional<Alumno> o = servicioDeGenericoService.findById(id);
 
 		if (!o.isPresent()) {
 			log.debug("Microservicio Alumno->actualizaAlumno");
@@ -148,20 +101,15 @@ public class AlumnoController {
 		alDb.setApellidos(al.getApellidos());
 		alDb.setEmail(al.getEmail());
 
-		return ResponseEntity.ok().body(alumnoService.save(alDb));
+		return ResponseEntity.ok().body(servicioDeGenericoService.save(alDb));
 
 	}
 
-	/**
-	 * Busca nombre or apellido.
-	 *
-	 * @param term the term
-	 * @return the response entity
-	 */
+	
 	@GetMapping("/nombreoapellido/{term}")
 	public ResponseEntity<?> buscaNombreOrApellido(@PathVariable String term) {
 
-		List<Alumno> alumnos = (List<Alumno>) alumnoService.buscaNombreOApellido(term);
+		List<Alumno> alumnos = (List<Alumno>) servicioDeGenericoService.buscaNombreOApellido(term);
 
 		if (alumnos.size() > 0) {
 			return ResponseEntity.ok().body(alumnos);
@@ -171,18 +119,12 @@ public class AlumnoController {
 		}
 	}
 
-	/**
-	 * Find by nombre or apellidos containing ignore case.
-	 *
-	 * @param nombre   the nombre
-	 * @param apellido the apellido
-	 * @return the response entity
-	 */
+	
 	@GetMapping("/nombreoapellidoignoramayusculas/{nombre}/{apellido}")
 	public ResponseEntity<?> findByNombreOrApellidosContainingIgnoreCase(@PathVariable String nombre,
 			@PathVariable String apellido) {
 
-		List<Alumno> alumnos = (List<Alumno>) alumnoService
+		List<Alumno> alumnos = (List<Alumno>) servicioDeGenericoService
 				.findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(nombre, apellido);
 
 		if (alumnos.size() > 0) {
@@ -194,16 +136,11 @@ public class AlumnoController {
 
 	}
 
-	/**
-	 * Ver foto.
-	 *
-	 * @param id the id
-	 * @return the response entity
-	 */
+	
 	@GetMapping("/uploads/img/{id}")
 	public ResponseEntity<?> verFoto(@PathVariable Long id) {
 
-		Optional<Alumno> o = alumnoService.findById(id);
+		Optional<Alumno> o = servicioDeGenericoService.findById(id);
 
 		if (o.isEmpty() || o.get().getFoto() == null) {
 			return ResponseEntity.notFound().build();
@@ -214,15 +151,7 @@ public class AlumnoController {
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imagen);
 	}
 
-	/**
-	 * Crear con foto.
-	 *
-	 * @param alumno  the alumno
-	 * @param result  the result
-	 * @param archivo the archivo
-	 * @return the response entity
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
+	
 	@PostMapping("/crear-con-foto")
 	public ResponseEntity<?> crearConFoto(@Valid Alumno alumno, BindingResult result,
 			@RequestParam MultipartFile archivo) throws IOException {
@@ -235,23 +164,14 @@ public class AlumnoController {
 		 */
 	}
 
-	/**
-	 * Editar con foto.
-	 *
-	 * @param alumno  the alumno
-	 * @param result  the result
-	 * @param id      the id
-	 * @param archivo the archivo
-	 * @return the response entity
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
+	
 	@PutMapping("/editar-con-foto/{id}")
 	public ResponseEntity<?> editarConFoto(@Valid Alumno alumno, BindingResult result, @PathVariable Long id,
 			@RequestParam MultipartFile archivo) throws IOException {
 		/*
 		 * if (result.hasErrors()) { return this.validar(result); }
 		 * 
-		 * Optional<Alumno> o = alumnoService.findById(id);
+		 * Optional<Alumno> o = servicioDeGenericoService.findById(id);
 		 * 
 		 * if (o.isEmpty()) { return ResponseEntity.notFound().build(); }
 		 * 
@@ -262,46 +182,10 @@ public class AlumnoController {
 		 * if (!archivo.isEmpty()) { alumnoDb.setFoto(archivo.getBytes()); }
 		 * 
 		 * return
-		 * ResponseEntity.status(HttpStatus.CREATED).body(alumnoService.save(alumnoDb));
+		 * ResponseEntity.status(HttpStatus.CREATED).body(servicioDeGenericoService.save(alumnoDb));
 		 */
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-	}
-	
-	/**
-	 * Guardar Alumno.
-	 * para probar MOCKITO antes de incluir el resto de microservicios que tienen el modelo de datos
-	 *
-	 * @param alumno the alumno
-	 * @return the response entity
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	@PostMapping("/guardaNormal")
-	public ResponseEntity<?> guardarAlumno(@RequestBody Alumno alumno) throws IOException {
-		
-		System.out.println("REPOSITORIO GUARDO ALUMNO"+alumno);
-		
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(alumnoService.save(alumno));
-	}
-	
-	/**
-	 * Eliminar alumno id.
-	 *
-	 * @param idAlumno the id alumno
-	 * @return the response entity
-	 */
-	@DeleteMapping("/{idAlumno}")
-
-	public ResponseEntity<?> eliminarAlumnoId(@PathVariable Long idAlumno){
-		
-		
-		
-		
-		alumnoService.deleteById(idAlumno);
-		
-		return ResponseEntity.noContent().build();
-		
 	}
 	
 	

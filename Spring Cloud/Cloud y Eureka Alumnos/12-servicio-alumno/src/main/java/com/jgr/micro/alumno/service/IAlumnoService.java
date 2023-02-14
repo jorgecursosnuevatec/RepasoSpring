@@ -1,7 +1,5 @@
 package com.jgr.micro.alumno.service;
 
-import java.util.Optional;
-
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.servicio.generico.service.IServiceGenerico;
 

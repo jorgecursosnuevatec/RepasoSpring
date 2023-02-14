@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.jgr.servicio.gateway</groupId>
 	<artifactId>07-servicio-gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>V1</version>
 	<name>07-servicio-gateway</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
