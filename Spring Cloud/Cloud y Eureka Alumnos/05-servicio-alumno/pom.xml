@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.jgr.micro.alumno</groupId>
 	<artifactId>05-servicio-alumno</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>V1</version>
 	<name>05-servicio-alumno</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
