@@ -1,6 +1,6 @@
 FROM openjdk:11
 VOLUME /tmp
-ADD ./target/05-servicio-alumno-V1.jar servicio-alumno.jar
+ADD ./target/12-servicio-alumno-sql-V1.jar servicio-alumno-sql.jar
 ENTRYPOINT ["java","-jar","/servicio-alumno.jar"]
 
 ##FROM openjdk:17.0.2
@@ -11,5 +11,5 @@ ENTRYPOINT ["java","-jar","/servicio-alumno.jar"]
 ##CONSTRUIR IMAGEN CON 
 #docker build . 
 #probar crear imagen con 
-##docker build -t alumnos
+##docker build -t alumnos-sql
 ##para ver si la crea con ese nombre

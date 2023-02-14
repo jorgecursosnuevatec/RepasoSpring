@@ -9,8 +9,8 @@
 		<version>2.7.8</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jgr.micro.alumno</groupId>
-	<artifactId>12-servicio-alumno</artifactId>
+	<groupId>com.jgr.micro.alumno.sql</groupId>
+	<artifactId>12-servicio-alumno-sql</artifactId>
 	<version>V1</version>
 	<name>12-servicio-alumno</name>
 	<description>Demo project for Spring Boot</description>

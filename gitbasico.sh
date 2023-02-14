@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-14 CREADO EUREKA"
+message="$(date)2023-02-14 ANTES DE CREAR GENERICO PARA EL CRUD"
 fi
 
 git add .

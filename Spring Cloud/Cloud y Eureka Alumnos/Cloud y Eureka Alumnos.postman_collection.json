@@ -15,12 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/",
+							"raw": "localhost:8090/api/alumnos-sql/",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								""
 							]
 						}
@@ -33,12 +35,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/id/1",
+							"raw": "localhost:8090/api/alumnos-sql/id/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"id",
 								"1"
 							]
@@ -52,12 +56,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/nombre/nombre",
+							"raw": "localhost:8090/api/alumnos-sql/nombre/nombre",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"nombre",
 								"nombre"
 							]
@@ -72,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idAlumno\": 1,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"raw": "{\r\n    \r\n    \"nombre\": \"Nombrecito\",\r\n    \"apellidos\": \"Apelliditoo0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,12 +86,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/1",
+							"raw": "localhost:8090/api/alumnos-sql/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"1"
 							]
 						}
@@ -110,14 +118,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/nombreoapellido/Apellido0",
+							"raw": "localhost:8090/api/alumnos-sql/nombreoapellido/Apellido2",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"nombreoapellido",
-								"Apellido0"
+								"Apellido2"
 							]
 						}
 					},
@@ -170,12 +180,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/guardaNormal",
+							"raw": "localhost:8090/api/alumnos-sql/guardaNormal",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"guardaNormal"
 							]
 						}
@@ -197,12 +209,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/1",
+							"raw": "localhost:8090/api/alumnos-sql/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"1"
 							]
 						}
