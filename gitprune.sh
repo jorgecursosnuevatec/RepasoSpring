@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-14 terminado microservicio y creado docker"
+message="$(date)2023-02-14 CREADO GATEWAY"
 fi
 
 start=`date +%s`
