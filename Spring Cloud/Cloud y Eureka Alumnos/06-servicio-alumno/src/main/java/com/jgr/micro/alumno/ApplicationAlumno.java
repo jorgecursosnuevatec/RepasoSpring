@@ -2,8 +2,9 @@ package com.jgr.micro.alumno;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MicroAlumnoApplication.
  * 
@@ -16,7 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 
  */
 @SpringBootApplication
-public class MicroAlumnoApplication {
+@EnableEurekaClient
+public class ApplicationAlumno {
 
 	/**
 	 * The main method.
@@ -24,7 +26,7 @@ public class MicroAlumnoApplication {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(MicroAlumnoApplication.class, args);
+		SpringApplication.run(ApplicationAlumno.class, args);
 	}
 
 }

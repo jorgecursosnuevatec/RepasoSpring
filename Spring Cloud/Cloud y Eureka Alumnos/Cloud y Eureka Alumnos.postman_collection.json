@@ -210,6 +210,25 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Eureka",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8761/eureka/apps",
+					"host": [
+						"localhost"
+					],
+					"port": "8761",
+					"path": [
+						"eureka",
+						"apps"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
