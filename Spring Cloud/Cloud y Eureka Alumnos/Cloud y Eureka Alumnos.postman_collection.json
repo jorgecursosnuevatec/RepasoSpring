@@ -151,12 +151,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/nombreoapellidoignoramayusculas/NOMBRE/APELLIDO",
+							"raw": "localhost:8090/api/alumnos-sql/nombreoapellidoignoramayusculas/NOMBRE/APELLIDO",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos-sql",
 								"nombreoapellidoignoramayusculas",
 								"NOMBRE",
 								"APELLIDO"

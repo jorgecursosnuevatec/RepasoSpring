@@ -3,51 +3,20 @@ package com.jgr.micro.alumno.service;
 import java.util.Optional;
 
 import com.jgr.micro.alumno.entity.Alumno;
+import com.jgr.servicio.generico.service.IServiceGenerico;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface IAlumnoService.
+ * Hereda de la interfaz GENERICA que he creado en 88-generico-jpa, para usarla tengo que pasarle la clase que vamos
+ * a usar
  */
 
-public interface IAlumnoService {
+public interface IAlumnoService extends IServiceGenerico<Alumno>{
 
-	/**
-	 * Find all.
-	 *
-	 * @return the iterable
-	 */
-	public Iterable<Alumno> findAll();
-
-	/**
-	 * Find by nombre like.
-	 *
-	 * @param nombreAlumno the nombre alumno
-	 * @return the iterable
-	 */
+		
 	public Iterable<Alumno> findByNombreContainsIgnoreCase(String nombreAlumno);
 
-	/**
-	 * Find by id.
-	 *
-	 * @param idAlumno the id alumno
-	 * @return the optional
-	 */
-	public Optional<Alumno> findById(Long idAlumno);
-
-	/**
-	 * Save.
-	 *
-	 * @param alumno the alumno
-	 * @return the alumno
-	 */
-	public Alumno save(Alumno alumno);
-
-	/**
-	 * Delete by id.
-	 *
-	 * @param idAlumno the id alumno
-	 */
-	public void deleteById(Long idAlumno);
 
 	public Iterable<Alumno> buscaNombreOApellido(String term);
 
