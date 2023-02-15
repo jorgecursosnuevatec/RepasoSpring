@@ -11,5 +11,5 @@ ENTRYPOINT ["java","-jar","/servicio-alumno.jar"]
 ##CONSTRUIR IMAGEN CON 
 #docker build . 
 #probar crear imagen con 
-##docker build -t alumnos-sql
+##docker build . -t alumnos-sql
 ##para ver si la crea con ese nombre

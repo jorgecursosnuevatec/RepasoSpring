@@ -4,6 +4,7 @@
 el -DskipTests es para que no haga el test
 
 install lo publica en el directorio local de maven
+.\mvnw clean install -DskipTests 
 
 --creamos fichero Dockerfile en el raiz de la aplicacion,en este caso del configserver
 FROM openjdk:11-> UTILIZA LA IMAGEN DEL JDK 11
@@ -118,6 +119,15 @@ docker build -t servicio-items:v1 .
 
 como este puede tener varios puertos(lo defino en el properties correspondiente le pongo todos los puertos que puede usar)
 docker run -p 8005:8005 -p 8002:8002 -p 8007:8007 --network red_microservicios servicio-items:v1
+
+
+--------------------------------------------------------------------------------------------------
+CREAR IMAGEN DOCKER DE MONGO
+--------------------------------------------------------------------------------------------------
+--seleccionar imagen desde Docker
+cuando se ejecute, seleccionar puerto 27017
+la cadena de conexion es mongodb://localhost:27017
+
 
 --------------------------------------------------------------------------------------------------
 PERSISTENCIA DATOS BBDD

@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jgr.servicio.generico.service.IServiceGenerico;
 
-
-
 /**
  * The Class ControladorGenerico. No le ponemos el @RestController porque lo va
  * a tener el que herede

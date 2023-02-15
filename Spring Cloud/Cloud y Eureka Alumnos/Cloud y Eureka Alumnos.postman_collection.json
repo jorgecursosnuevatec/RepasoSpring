@@ -228,6 +228,31 @@
 			]
 		},
 		{
+			"name": "Cursos",
+			"item": [
+				{
+					"name": "ListaCursosMongo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/curso-mongo/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"curso-mongo",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Eureka",
 			"request": {
 				"method": "GET",

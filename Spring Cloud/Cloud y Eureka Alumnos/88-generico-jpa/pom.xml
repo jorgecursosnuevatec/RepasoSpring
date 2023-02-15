@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jgr.servicio.generico</groupId>
-	<artifactId>88-generico-service</artifactId>
+	<artifactId>88-generico-service-sql</artifactId>
 	<version>V1</version>
-	<name>88-generico-service</name>
-	<description>Generico para acceso datos y controlador</description>
+	<name>88-generico-service-sql</name>
+	<description>Generico para capa de servicio SQL</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

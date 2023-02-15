@@ -97,7 +97,7 @@
 		<!-- capa de SERVICIO del servicio generico jpa -->
 		<dependency>
 			<groupId>com.jgr.servicio.generico</groupId>
-			<artifactId>88-generico-service</artifactId>
+			<artifactId>88-generico-service-sql</artifactId>
 			<version>V1</version>
 		</dependency>
 		<!-- capa de CONTROLADOR del servicio generico jpa -->
