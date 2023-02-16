@@ -21,7 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.jgr.micro.alumno.entity.Alumno;
+import com.jgr.common.alumno.model.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 import com.jgr.micro.alumno.service.AlumnoServiceImpl;
 
@@ -49,16 +49,16 @@ class AlumnoServiceImplTest {
 	AlumnoServiceImpl alumnoService;
 
 	/** The al 1. */
-	Optional<Alumno> al1;
+	Optional<com.jgr.common.alumno.model.Alumno> al1;
 
 	/** The al 2. */
-	Optional<Alumno> al2;
+	Optional<com.jgr.common.alumno.model.Alumno> al2;
 	
 	/** The al 3. */
-	Alumno al3;
+	com.jgr.common.alumno.model.Alumno al3;
 
 	/** The alumnos lista. */
-	List<Alumno> alumnosLista;
+	List<com.jgr.common.alumno.model.Alumno> alumnosLista;
 
 	/** The limite. */
 	int limite = 3;
@@ -71,7 +71,7 @@ class AlumnoServiceImplTest {
 	@BeforeEach
 	void setUp() throws Exception {
 
-		Alumno al;
+		com.jgr.common.alumno.model.Alumno al;
 		alumnosLista = new ArrayList<>();
 
 		for (int i = 0; i < limite; i++) {

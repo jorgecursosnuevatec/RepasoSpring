@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-15 MICROSERVICIO CURSOS CON MONGO"
+message="$(date)2023-02-16 CONVERTIDO EL MODELO DE DATOS EN PACKAGE,DA ERROR EN LOS TEST"
 fi
 
 start=`date +%s`

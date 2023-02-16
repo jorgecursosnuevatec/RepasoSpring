@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jgr.micro.alumno.entity.Alumno;
+import com.jgr.common.alumno.model.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 import com.jgr.servicio.generico.service.ServiceGenericoImpl;
 

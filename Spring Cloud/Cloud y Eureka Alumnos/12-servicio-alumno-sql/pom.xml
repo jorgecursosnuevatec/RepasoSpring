@@ -106,7 +106,12 @@
 			<artifactId>88-generico-controller</artifactId>
 			<version>V1</version>
 		</dependency>
-
+		<!-- Modelo de DATOS de 88-comun-alumno -->
+		<dependency>
+			<groupId>com.jgr.common.alumno</groupId>
+			<artifactId>88-comun-alumno</artifactId>
+			<version>V1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

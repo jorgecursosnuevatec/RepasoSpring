@@ -1,6 +1,6 @@
 package com.jgr.micro.alumno.service;
 
-import com.jgr.micro.alumno.entity.Alumno;
+import com.jgr.common.alumno.model.Alumno;
 import com.jgr.servicio.generico.service.IServiceGenerico;
 
 

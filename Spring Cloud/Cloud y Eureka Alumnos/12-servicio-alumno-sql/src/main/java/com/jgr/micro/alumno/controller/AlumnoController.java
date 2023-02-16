@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jgr.common.alumno.model.Alumno;
 import com.jgr.controller.generico.ControladorGenerico;
-import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.IAlumnoService;
 
 

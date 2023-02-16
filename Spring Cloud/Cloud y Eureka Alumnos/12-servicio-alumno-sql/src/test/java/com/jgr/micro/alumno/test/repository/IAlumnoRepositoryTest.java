@@ -18,7 +18,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
-import com.jgr.micro.alumno.entity.Alumno;
+import com.jgr.common.alumno.model.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 
 
