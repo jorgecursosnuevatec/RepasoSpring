@@ -249,6 +249,55 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "SQLListaCursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/curso-sql/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"curso-sql",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQLGuardaCurso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCurso\": null,\r\n    \"nombreCurso\": \"NombreCurso0\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"alumnos\": [\r\n        {\r\n            \"idAlumno\": 1,\r\n            \"nombre\": \"Nombre0\",\r\n            \"apellidos\": \"Apellido0\",\r\n            \"email\": \"Email0@mail.com\",\r\n            \"createAt\": \"2023-02-18T12:46:32.366+01:00\",\r\n            \"foto\": null\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/curso-sql/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"curso-sql",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

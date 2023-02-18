@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-18 RENOMBRADOS SERVICIOS"
+message="$(date)2023-02-18 HACER EL POST EN EL CONTROLLER GENERICO,O EN EL DE CURSOS"
 fi
 
 start=`date +%s`
