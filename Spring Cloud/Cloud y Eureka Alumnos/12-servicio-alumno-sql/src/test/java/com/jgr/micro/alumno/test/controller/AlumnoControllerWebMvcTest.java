@@ -64,7 +64,7 @@ class AlumnoControllerWebMvcTest {
 	private static int limite = 5;
 
 	/** The alumnos lista. */
-	private List<com.jgr.common.alumno.model.Alumno> alumnosLista;
+	private List<com.jgr.modelo.generico.alumno.Alumno> alumnosLista;
 	
 	/** The object mapper. */
 	//para convertir de json a objeto,lo inicializamos en setup
@@ -79,11 +79,11 @@ class AlumnoControllerWebMvcTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		com.jgr.common.alumno.model.Alumno al;
+		com.jgr.modelo.generico.alumno.Alumno al;
 		alumnosLista = new ArrayList<>();
 
 		for (int i = 0; i < limite; i++) {
-			al = new com.jgr.common.alumno.model.Alumno();
+			al = new com.jgr.modelo.generico.alumno.Alumno();
 			al.setIdAlumno(Long.valueOf(i));
 			al.setNombre("Nombre" + i);
 			al.setApellidos("Apellido" + i);
@@ -151,7 +151,7 @@ class AlumnoControllerWebMvcTest {
 		
 		
 		//pasamos el alumno a texto para compararlo luego
-		com.jgr.common.alumno.model.Alumno al = alumnoService.findById(1L).get();
+		com.jgr.modelo.generico.alumno.Alumno al = alumnoService.findById(1L).get();
 		
 		//ahora probamos convirtiendo el objeto a string para comparar que es lo que devuelve
 		mocMvc.perform(get("/id/1") //llamamos al buscar por id
@@ -179,10 +179,10 @@ class AlumnoControllerWebMvcTest {
     void testGuardar() throws Exception {
         // Given
         
-		 com.jgr.common.alumno.model.Alumno alumno = new com.jgr.common.alumno.model.Alumno();
+		 com.jgr.modelo.generico.alumno.Alumno alumno = new com.jgr.modelo.generico.alumno.Alumno();
         
         when(alumnoService.save(any())).then(invocation ->{
-            com.jgr.common.alumno.model.Alumno al = invocation.getArgument(0);
+            com.jgr.modelo.generico.alumno.Alumno al = invocation.getArgument(0);
             al.setIdAlumno(99999L);
             al.setNombre("Pepe");
             al.setApellidos("ApellidoPepe");

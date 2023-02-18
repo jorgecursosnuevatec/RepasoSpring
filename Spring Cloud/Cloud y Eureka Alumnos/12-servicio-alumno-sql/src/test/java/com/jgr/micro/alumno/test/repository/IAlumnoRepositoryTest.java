@@ -18,8 +18,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
-import com.jgr.common.alumno.model.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
+import com.jgr.modelo.generico.alumno.Alumno;
 
 
 

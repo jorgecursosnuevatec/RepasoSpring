@@ -12,7 +12,7 @@
 	<groupId>com.jgr.micro.alumno.sql</groupId>
 	<artifactId>12-servicio-alumno-sql</artifactId>
 	<version>V1</version>
-	<name>12-servicio-alumno</name>
+	<name>12-servicio-alumno-sql</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -96,21 +96,21 @@
 		</dependency>
 		<!-- capa de SERVICIO del servicio generico jpa -->
 		<dependency>
-			<groupId>com.jgr.servicio.generico</groupId>
-			<artifactId>88-generico-service-sql</artifactId>
-			<version>V1</version>
+			<groupId>com.jgr.jpa.generico</groupId>
+	<artifactId>88-jpa-generico</artifactId>
+	<version>V1</version>
 		</dependency>
 		<!-- capa de CONTROLADOR del servicio generico jpa -->
 		<dependency>
-			<groupId>com.jgr.controller.generico</groupId>
-			<artifactId>88-generico-controller</artifactId>
-			<version>V1</version>
+	<groupId>com.jgr.controller.generico</groupId>
+	<artifactId>88-controller-generico</artifactId>
+	<version>V1</version>
 		</dependency>
 		<!-- Modelo de DATOS de 88-comun-alumno -->
 		<dependency>
-			<groupId>com.jgr.common.alumno</groupId>
-			<artifactId>88-comun-alumno</artifactId>
-			<version>V1</version>
+			<groupId>com.jgr.modelo.alumno</groupId>
+	<artifactId>88-modelo-generico-alumno</artifactId>
+	<version>V1</version>
 		</dependency>
 	</dependencies>
 

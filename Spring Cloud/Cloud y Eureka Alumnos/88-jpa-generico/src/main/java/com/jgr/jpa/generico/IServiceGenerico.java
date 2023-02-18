@@ -1,5 +1,5 @@
 
-package com.jgr.servicio.generico.service;
+package com.jgr.jpa.generico;
 
 import java.util.Optional;
 

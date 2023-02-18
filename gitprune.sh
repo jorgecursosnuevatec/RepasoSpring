@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-16 CONVERTIDO EL MODELO DE DATOS EN PACKAGE,DA ERROR EN LOS TEST"
+message="$(date)2023-02-18 RENOMBRADOS SERVICIOS"
 fi
 
 start=`date +%s`

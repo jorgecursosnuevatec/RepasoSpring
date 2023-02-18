@@ -21,9 +21,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.jgr.common.alumno.model.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
 import com.jgr.micro.alumno.service.AlumnoServiceImpl;
+import com.jgr.modelo.generico.alumno.Alumno;
 
 // TODO: Auto-generated Javadoc
 //https://stackoverflow.com/questions/60308578/what-is-the-difference-between-extendwithspringextension-class-and-extendwit
@@ -49,16 +49,16 @@ class AlumnoServiceImplTest {
 	AlumnoServiceImpl alumnoService;
 
 	/** The al 1. */
-	Optional<com.jgr.common.alumno.model.Alumno> al1;
+	Optional<com.jgr.modelo.generico.alumno.Alumno> al1;
 
 	/** The al 2. */
-	Optional<com.jgr.common.alumno.model.Alumno> al2;
+	Optional<com.jgr.modelo.generico.alumno.Alumno> al2;
 	
 	/** The al 3. */
-	com.jgr.common.alumno.model.Alumno al3;
+	com.jgr.modelo.generico.alumno.Alumno al3;
 
 	/** The alumnos lista. */
-	List<com.jgr.common.alumno.model.Alumno> alumnosLista;
+	List<com.jgr.modelo.generico.alumno.Alumno> alumnosLista;
 
 	/** The limite. */
 	int limite = 3;
@@ -71,7 +71,7 @@ class AlumnoServiceImplTest {
 	@BeforeEach
 	void setUp() throws Exception {
 
-		com.jgr.common.alumno.model.Alumno al;
+		com.jgr.modelo.generico.alumno.Alumno al;
 		alumnosLista = new ArrayList<>();
 
 		for (int i = 0; i < limite; i++) {

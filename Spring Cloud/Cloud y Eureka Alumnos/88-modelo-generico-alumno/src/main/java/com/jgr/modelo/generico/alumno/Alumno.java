@@ -1,4 +1,4 @@
-package com.jgr.common.alumno.model;
+package com.jgr.modelo.generico.alumno;
 
 import java.util.Date;
 

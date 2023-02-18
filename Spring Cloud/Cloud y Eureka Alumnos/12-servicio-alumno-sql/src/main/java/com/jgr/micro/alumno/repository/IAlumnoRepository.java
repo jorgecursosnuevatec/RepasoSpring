@@ -4,7 +4,7 @@ package com.jgr.micro.alumno.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.jgr.common.alumno.model.Alumno;
+import com.jgr.modelo.generico.alumno.Alumno;
 
 
 
