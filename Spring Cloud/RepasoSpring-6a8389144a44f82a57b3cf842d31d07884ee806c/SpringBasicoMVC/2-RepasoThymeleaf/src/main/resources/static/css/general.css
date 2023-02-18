@@ -1,0 +1,68 @@
+footer div.navbar-collapse {
+	padding: 1em;background-color: orange;
+}
+footer div.navbar-collapse a {
+	color: white;
+}
+
+nav h3 {
+	padding: 1em;background-color: orange;
+}
+nav div.navbar-collapse {
+	padding: 1em;background-color: #e3f2fd;
+}
+label, p {
+	font-weight: bold;
+}
+
+input {
+	border: 2px orange solid;
+	padding: 0.7em;
+	border-radius: 5px;
+}
+.row.cliente {
+	margin: 1em 0 2em 0;
+}
+.row.cliente span {
+	background-color: #eaaf48;
+	color: white;
+	margin: 1em;
+	padding: 1em;
+	vertical-align: middle;
+}
+
+.row.cabecera div {
+	background-color: #3ec15a;
+	padding: 1em;
+	margin-bottom: 2px;
+	font-weight: bold;
+	color: white;
+	border: 1px solid white;
+	text-align: center;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
+
+
+.productos:nth-child(even) div {
+	padding: 0.5em 0 0.5em 0;	
+	margin-bottom: 2px;
+	border-left: 1px solid white;
+	background-color: #7ff5a3;
+	
+}
+.productos:nth-child(odd) div { 
+	background: #62cec1;
+	padding:  0.5em 0 0.5em 0;	
+	margin-bottom: 2px;
+	border-left: 1px solid white;
+}
+
+.productos div.row > div {
+	text-align: center;
+	color: white;
+}
+
+
+

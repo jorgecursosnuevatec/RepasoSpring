@@ -1,0 +1,48 @@
+@charset "ISO-8859-1";
+
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+#wrapper{
+    padding-bottom: 81px;
+    min-height: calc(100% - 81px);
+    position: relative;
+}
+ 
+header {
+    color: white;
+    background-color: #0086CD;
+}
+
+
+#footer-zone { 
+ color: white;
+    background-color: #1A1A1A;
+    width: 100%;
+    position: relative;
+	margin-top: -180px; /* negative value of footer height */
+	height: 180px;
+	clear:both;
+
+  
+}
+
+
+.container {
+    padding:12px;    
+    
+}
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}

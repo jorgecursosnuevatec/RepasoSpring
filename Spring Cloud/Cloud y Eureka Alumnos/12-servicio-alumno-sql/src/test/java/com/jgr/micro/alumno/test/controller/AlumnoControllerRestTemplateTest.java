@@ -30,7 +30,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-
+import com.jgr.micro.alumno.entity.Alumno;
 
 
 // TODO: Auto-generated Javadoc
@@ -38,6 +38,9 @@ import com.google.gson.Gson;
  * The Class AlumnoControllerRestTemplateTest.
  * 
  * ordenamos porque necesitamos que se ejecute en orden
+ * 
+ * 
+ * 
  */
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -111,17 +114,17 @@ class AlumnoControllerRestTemplateTest {
 	@DisplayName("guardarAlumnoTest()")
 	void guardarAlumnoTest() {
 		
-		com.jgr.modelo.generico.alumno.Alumno al = new com.jgr.modelo.generico.alumno.Alumno();
+		Alumno al = new Alumno();
 		al.setNombre("Nombre1");
 		al.setApellidos("Apellido1");
 		al.setEmail("Email1@mail.com");
 		al.setCreateAt(new Date());
 		
-		 ResponseEntity<com.jgr.modelo.generico.alumno.Alumno> respuesta = testRestTemplate
-				 .postForEntity(crearUri("/guardaNormal"), al, com.jgr.modelo.generico.alumno.Alumno.class);
+		 ResponseEntity<Alumno> respuesta = testRestTemplate
+				 .postForEntity(crearUri("/guardaNormal"), al, Alumno.class);
 	        assertEquals(HttpStatus.CREATED, respuesta.getStatusCode());
 	        assertEquals(MediaType.APPLICATION_JSON, respuesta.getHeaders().getContentType());
-	        com.jgr.modelo.generico.alumno.Alumno cuentaCreada = respuesta.getBody();
+	        Alumno cuentaCreada = respuesta.getBody();
 	        System.out.println("el alumno es->"+cuentaCreada);
 	        assertNotNull(cuentaCreada);
 //	        assertNotNull(cuentaCreada.getIdAlumno(),()->"El id del alumno es nulo");
@@ -138,9 +141,9 @@ class AlumnoControllerRestTemplateTest {
 	@DisplayName("listarTodosTest()")
 	void listarTodosTest() {
 		
-		ResponseEntity<com.jgr.modelo.generico.alumno.Alumno[]> respuesta = 
+		ResponseEntity<Alumno[]> respuesta = 
 				testRestTemplate
-				.getForEntity(crearUri("/"), com.jgr.modelo.generico.alumno.Alumno[].class);;
+				.getForEntity(crearUri("/"), Alumno[].class);;
 		
 				
 		assertNotNull(respuesta);		
@@ -149,9 +152,9 @@ class AlumnoControllerRestTemplateTest {
 		//devueleve un array  de alumnos, deberia estar ordenada por id
 
 		
-		List<com.jgr.modelo.generico.alumno.Alumno> alumnosLista = Stream.of(respuesta.getBody())
+		List<Alumno> alumnosLista = Stream.of(respuesta.getBody())
 				.map(alumno->{    //le paso el formato a LISTA de alumnos
-					com.jgr.modelo.generico.alumno.Alumno al= new com.jgr.modelo.generico.alumno.Alumno();
+					Alumno al= new Alumno();
 					al.setIdAlumno(alumno.getIdAlumno());
 					al.setNombre(alumno.getNombre());
 					al.setApellidos(alumno.getApellidos());
@@ -181,13 +184,13 @@ class AlumnoControllerRestTemplateTest {
 	void borrarAlumnoTest() {
 		
 		int longAntes = testRestTemplate
-				.getForEntity(crearUri("/"), com.jgr.modelo.generico.alumno.Alumno[].class).getBody().length;
+				.getForEntity(crearUri("/"), Alumno[].class).getBody().length;
 		
 		//borro
 		testRestTemplate.delete(crearUri("/1"));
 		
 		int longDespues =testRestTemplate
-				.getForEntity(crearUri("/"), com.jgr.modelo.generico.alumno.Alumno[].class).getBody().length;
+				.getForEntity(crearUri("/"), Alumno[].class).getBody().length;
 		
 		
 		assertEquals(longAntes,++longDespues,()->"No ha borrado bien el registro 1");

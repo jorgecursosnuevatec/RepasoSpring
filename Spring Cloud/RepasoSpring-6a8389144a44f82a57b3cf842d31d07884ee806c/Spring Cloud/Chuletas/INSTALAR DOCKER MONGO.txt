@@ -1,0 +1,41 @@
+docker pull mongo
+
+docker pull mongo:4.4.19-rc1-focal
+
+
+Start a mongo server instance
+$ docker run --name some-mongo -d mongo:tag
+... where some-mongo is the name you want to assign to your container and tag is the tag specifying the MongoDB version you want. See the list above for relevant tags.
+
+docker run --name mongodb -d mongo:4.4.19-rc1-focal
+
+Connect to MongoDB from another Docker container
+The MongoDB server in the image listens on the standard MongoDB port, 27017, so connecting via Docker networks will be the same as connecting to a remote mongod. The following example starts another MongoDB container instance and runs the mongosh (use mongo with 4.x versions) command line client against the original MongoDB container from the example above, allowing you to execute MongoDB statements against your database instance:
+
+$ docker run -it --network some-network --rm mongo mongosh --host some-mongo test
+
+... where some-mongo is the name of your original mongo container.
+Environment Variables
+When you start the mongo image, you can adjust the initialization of the MongoDB instance by passing one or more environment variables on the docker run command line. Do note that none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup.
+
+MONGO_INITDB_ROOT_USERNAME, MONGO_INITDB_ROOT_PASSWORD
+These variables, used in conjunction, create a new user and set that user's password. This user is created in the admin authentication database and given the role of root, which is a "superuser" role.
+
+The following is an example of using these two variables to create a MongoDB instance and then using the mongosh cli (use mongo with 4.x versions) to connect against the admin authentication database.
+
+$ docker run -d --network some-network --name some-mongo \
+	-e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
+	-e MONGO_INITDB_ROOT_PASSWORD=secret \
+	mongo
+
+$ docker run -it --rm --network some-network mongo \
+	mongosh --host some-mongo \
+		-u mongoadmin \
+		-p secret \
+		--authenticationDatabase admin \
+		some-db
+> db.getName();
+some-db
+Both variables are required for a user to be created. If both are present then MongoDB will start with authentication enabled (mongod --auth).
+
+Authentication in MongoDB is fairly complex, so more complex user setup is explicitly left to the user via /docker-entrypoint-initdb.d/ (see the Initializing a fresh instance and Authentication sections below for more details)

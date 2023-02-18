@@ -2,9 +2,7 @@ package com.jgr.micro.alumno;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.ComponentScan;
 
 
 /**
@@ -20,10 +18,6 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableEurekaClient
-
-
-@ComponentScan(basePackages = {"com.jgr.common.alumno.model"})
-@EntityScan({"com.jgr.common.alumno.model"})
 public class ApplicationAlumno {
 
 	/**

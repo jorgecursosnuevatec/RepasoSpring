@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <head>
+        <title>Plantilla</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:fragment="header">
+        <!-- 
+            <h1>Control de Clientes</h1>
+             -->
+             <!-- este mensaje lo coge del properties-->
+            <h1 th:text="#{plantilla.titulo}">Titulo</h1>
+            <!-- este mensaje lo cargamos desde el controlador dependiendo de la hora-->
+            <div th:text="${mensaje}"></div>
+        </header>
+        
+        
+        <footer th:fragment="footer">
+            <div>
+                <br/>
+                <a th:href="@{/(lang=es)}">ES</a> |
+                <a th:href="@{/(lang=en)}">EN</a> |
+                  <span> [[#{plantilla.pie-pagina}]]
+                  <div class= "alert alert-success">                  
+             	 <b>Er Jorge</b>
+             	 </div>
+             	 
+             	 <!-- LO CREAMOS EN  TIEMPOTRANSCURRIDO INTERCEPTOR Y EN MVCCONFIG LO INYECTAMOS
+             	 El nombre es el que le damos en el modelAndView del postHandle de TiempoTranscurridoInterceptor-->
+             	<span th:text="'Tiempo Transcurrido: ' + ${tiempoTranscurrido} + ' en milisegundos'"></span>
+             	<br>
+             	<span th:text="'Es metodo POST?->' + ${esPost}"></span>
+             	<br>
+             	<span th:text="'Abierto/Cerrado Horario->' + ${horario}"></span>
+             	
+             	</span>
+               
+            </div>
+        </footer>
+        
+    </body>
+</html>

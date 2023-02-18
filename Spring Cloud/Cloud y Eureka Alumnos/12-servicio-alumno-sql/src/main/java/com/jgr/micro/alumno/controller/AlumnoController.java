@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jgr.controller.generico.ControladorGenerico;
+import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.IAlumnoService;
-import com.jgr.modelo.generico.alumno.Alumno;
 
 
 

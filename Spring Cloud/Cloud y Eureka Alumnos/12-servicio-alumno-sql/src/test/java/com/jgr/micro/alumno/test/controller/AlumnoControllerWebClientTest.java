@@ -15,6 +15,13 @@ import org.springframework.test.web.reactive.server.WebTestClient;
  * PRUEBAS DE INTEGRACION,REALES PARA WEBFLUX,PROGRAMACION REACTIVA
  * 
  * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
+ * *************************NO HECHA************************************************
  * Sin mock.Se utilizan puertos reales,se levanta un servidor real
  * WebClient es para WEBFLUX,programacion reactiva
  * 
@@ -54,7 +61,7 @@ class AlumnoControllerWebClientTest {
 	void testBuscarPorId() {
 		
 		//se llama al servidor del 8080, donde esta el microservicio
-		webTestClient.get().uri("localhost:8080/id/1")
+		webTestClient.get().uri("localhost:8080l/id/1")
 		.exchange()//realizamos el request
 		.expectStatus().isOk()//el resultado debe ser ok
 		.expectHeader().contentType(MediaType.APPLICATION_JSON) //que la cabecera sea un json
