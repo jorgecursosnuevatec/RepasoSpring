@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-18 HACER EL POST EN EL CONTROLLER GENERICO,O EN EL DE CURSOS"
+message="$(date)2023-02-20 BAJADO COMPARTIENDO BBDD SIN PROBAR"
 fi
 
 start=`date +%s`
