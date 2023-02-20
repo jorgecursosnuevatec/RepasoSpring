@@ -1,17 +1,17 @@
-package com.jgr.micro.usuarios.sql;
+package com.jgr.microservicio.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
+@EnableZuulProxy
 @EnableEurekaClient
 @SpringBootApplication
-@EntityScan({"com.jgr.commons.modelo.alumnos"})
-public class MicroservicosUsuariosApplication {
+public class MicroserviciosZuulApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroservicosUsuariosApplication.class, args);
+		SpringApplication.run(MicroserviciosZuulApplication.class, args);
 	}
 
 }

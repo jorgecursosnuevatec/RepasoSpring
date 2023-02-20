@@ -19,21 +19,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jgr.commons.service.CommonService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CommonController.
+ * No le ponemos el @RestController porque lo va
+ * a tener el que herede
+ * 
+ * E->entity,objeto que le pasamos S->service,capa de servicio que va a recibir,
+ * que hereda de generico-service,es una INTERFAZ
+ * 
+ * @param <E> the element type
+ * @param <S> the generic type
+ */
 public class CommonController<E, S extends CommonService<E>> {
 
+	/** The servicio.
+	 PROTECTED PARA QUE PUEDA USARLO EL QUE LO HEREDE  */
 	@Autowired
 	protected S service;
 	
+	/**
+	 * Listar.
+	 *
+	 * @return the response entity
+	 */
 	@GetMapping
 	public ResponseEntity<?> listar(){
 		return ResponseEntity.ok().body(service.findAll());
 	}
 	
+	/**
+	 * Listar.
+	 *
+	 * @param pageable the pageable
+	 * @return the response entity
+	 */
 	@GetMapping("/pagina")
 	public ResponseEntity<?> listar(Pageable pageable){
 		return ResponseEntity.ok().body(service.findAll(pageable));
 	}
 	
+	/**
+	 * Ver.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<?> ver(@PathVariable Long id){
 		Optional<E> o = service.findById(id);
@@ -43,6 +74,13 @@ public class CommonController<E, S extends CommonService<E>> {
 		return ResponseEntity.ok(o.get());
 	}
 	
+	/**
+	 * Crear.
+	 *
+	 * @param entity the entity
+	 * @param result the result
+	 * @return the response entity
+	 */
 	@PostMapping
 	public ResponseEntity<?> crear(@Valid @RequestBody E entity, BindingResult result){
 		
@@ -53,12 +91,24 @@ public class CommonController<E, S extends CommonService<E>> {
 		return ResponseEntity.status(HttpStatus.CREATED).body(entityDb);
 	}
 	
+	/**
+	 * Eliminar.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable Long id){
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+	/**
+	 * Validar.
+	 *
+	 * @param result the result
+	 * @return the response entity
+	 */
 	protected ResponseEntity<?> validar(BindingResult result){
 		Map<String, Object> errores = new HashMap<>();
 		result.getFieldErrors().forEach(err -> {

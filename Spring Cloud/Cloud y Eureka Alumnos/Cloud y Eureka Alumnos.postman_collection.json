@@ -168,13 +168,13 @@
 					"response": []
 				},
 				{
-					"name": "AlumnoGuardaNormal",
+					"name": "AlumnoGuarda",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idAlumno\": null,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"raw": "{\r\n    \"idAlumno\": null,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellido\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -182,15 +182,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8090/api/alumnos-sql/guardaNormal",
+							"raw": "localhost:8090/api/alumnos",
 							"host": [
 								"localhost"
 							],
 							"port": "8090",
 							"path": [
 								"api",
-								"alumnos-sql",
-								"guardaNormal"
+								"alumnos"
 							]
 						}
 					},
@@ -256,15 +255,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8090/api/curso-sql/",
+							"raw": "localhost:8090/api/cursos",
 							"host": [
 								"localhost"
 							],
 							"port": "8090",
 							"path": [
 								"api",
-								"curso-sql",
-								""
+								"cursos"
 							]
 						}
 					},
@@ -277,7 +275,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idCurso\": null,\r\n    \"nombreCurso\": \"NombreCurso0\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"alumnos\": [\r\n        {\r\n            \"idAlumno\": 1,\r\n            \"nombre\": \"Nombre0\",\r\n            \"apellidos\": \"Apellido0\",\r\n            \"email\": \"Email0@mail.com\",\r\n            \"createAt\": \"2023-02-18T12:46:32.366+01:00\",\r\n            \"foto\": null\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"id\": null,\r\n    \"nombre\": \"NombreCurso0\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"alumnos\": [],\r\n    \"examenes\":[]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -285,15 +283,86 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8090/api/curso-sql/",
+							"raw": "localhost:8090/api/cursos",
 							"host": [
 								"localhost"
 							],
 							"port": "8090",
 							"path": [
 								"api",
-								"curso-sql",
-								""
+								"cursos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Examen",
+			"item": [
+				{
+					"name": "ListaExamenes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/examenes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"examenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GuardaExamen",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Examen1\",\r\n    \"createAt\": \"2023-02-20T18:36:24.000+00:00\",\r\n    \"preguntas\": [],\r\n    \"asignatura\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Matemáticas\",\r\n        \"padre\": null,\r\n        \"hijos\": [\r\n            {\r\n                \"id\": 8,\r\n                \"nombre\": \"Algebra\",\r\n                \"hijos\": []\r\n            },\r\n            {\r\n                \"id\": 9,\r\n                \"nombre\": \"Aritmética\",\r\n                \"hijos\": []\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"nombre\": \"Trigonometría\",\r\n                \"hijos\": []\r\n            }\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/examenes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"examenes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListaExamenesAsignaturas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/examenes/asignaturas",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"examenes",
+								"asignaturas"
 							]
 						}
 					},
