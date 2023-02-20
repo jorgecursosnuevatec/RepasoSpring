@@ -12,5 +12,11 @@ import com.jgr.servicio.generico.service.IServiceGenerico;
  * 
  */
 public interface ICursoService extends IServiceGenerico<Curso>{
+	
+	
+	public Curso findCursoByAlumnoId(Long id);
+	
+	public Iterable<Long> obtenerExamenesIdsConRespuestasAlumno(Long alumnoId);
+	
 
 }

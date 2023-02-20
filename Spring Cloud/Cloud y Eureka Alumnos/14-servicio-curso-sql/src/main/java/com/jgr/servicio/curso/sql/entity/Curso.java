@@ -4,6 +4,7 @@ package com.jgr.servicio.curso.sql.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,6 +71,23 @@ public class Curso {
 		this.alumnos.remove(alumno);
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(idCurso);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Curso)) {
+			return false;
+		}
+		Curso other = (Curso) obj;
+		return Objects.equals(idCurso, other.idCurso);
+	}
+
 	/*
 	public List<Examen> getExamenes() {
 		return examenes;
@@ -87,4 +105,7 @@ public class Curso {
 		this.examenes.remove(examen);
 	}
 	*/
+	
+	
+	
 }

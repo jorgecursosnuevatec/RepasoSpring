@@ -79,7 +79,7 @@ public class ControladorGenerico<E, S extends IServiceGenerico<E>> {
 	 * @return the response entity
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	@PostMapping("/guardaNormal")
+	@PostMapping("/guardar")
 	public ResponseEntity<?> guardarEntity(@RequestBody E entity) throws IOException {
 
 		System.out.println("REPOSITORIO GUARDO ALUMNO" + entity);
@@ -105,8 +105,8 @@ public class ControladorGenerico<E, S extends IServiceGenerico<E>> {
 	
 	
 	
-	VER COMO HAGO EL GUARDADO PARA QUE NO INTERVENGA LA VALIDACION VALIDAR
-	@PostMapping
+
+	/*
 	public ResponseEntity<?> crear(@Valid @RequestBody E entity, BindingResult result){
 		
 		if(result.hasErrors()) {
@@ -115,6 +115,6 @@ public class ControladorGenerico<E, S extends IServiceGenerico<E>> {
 		E entityDb = servicioDeGenericoService.save(entity);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entityDb);
 	}
-	
+	*/
 
 }
