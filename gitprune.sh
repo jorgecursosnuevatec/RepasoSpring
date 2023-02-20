@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-20 BAJADO COMPARTIENDO BBDD SIN PROBAR"
+message="$(date)2023-02-20 BAJADO ACTUALIZANDO VERSIONES Y POM SIN PROBAR"
 fi
 
 start=`date +%s`
