@@ -37,6 +37,8 @@ public class CursoController extends CommonController<Curso, CursoService>{
 		response.put("cursos", service.findAll());
 		return ResponseEntity.ok(response);
 	}
+	
+	
 
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@Valid @RequestBody Curso curso, BindingResult result, @PathVariable Long id){

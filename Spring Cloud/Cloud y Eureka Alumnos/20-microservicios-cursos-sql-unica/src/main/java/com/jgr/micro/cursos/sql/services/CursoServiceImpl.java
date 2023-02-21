@@ -26,4 +26,8 @@ public class CursoServiceImpl extends CommonServiceImpl<Curso, CursoRepository> 
 		return client.obtenerExamenesIdsConRespuestasAlumno(alumnoId);
 	}
 
+	
+
+	
+	
 }

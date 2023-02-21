@@ -9,7 +9,7 @@
 		<version>2.7.8</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jgr.micro.usuarios.sql</groupId>
+	<groupId>com.jgr.micro.alumnos.sql</groupId>
 	<artifactId>10-microservicios-alumnos-sql-unica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>microservicios-alumnos</name>
