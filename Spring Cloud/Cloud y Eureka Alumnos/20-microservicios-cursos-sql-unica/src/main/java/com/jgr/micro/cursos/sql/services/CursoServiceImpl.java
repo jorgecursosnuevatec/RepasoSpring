@@ -22,6 +22,7 @@ public class CursoServiceImpl extends CommonServiceImpl<Curso, CursoRepository> 
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Iterable<Long> obtenerExamenesIdsConRespuestasAlumno(Long alumnoId) {
 		return client.obtenerExamenesIdsConRespuestasAlumno(alumnoId);
 	}

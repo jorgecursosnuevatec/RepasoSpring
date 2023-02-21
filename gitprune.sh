@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-20 BAJADO ACTUALIZANDO VERSIONES Y POM FATA PROBAR CURSOS MONGO"
+message="$(date)2023-02-21 EJEMPLOS JPA"
 fi
 
 start=`date +%s`

@@ -66,7 +66,7 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService>{
 	
 	@GetMapping("/filtrar/{term}")
 	public ResponseEntity<?> filtrar(@PathVariable String term){
-		return ResponseEntity.ok(service.findByNombreOrApellido(term));
+		return ResponseEntity.ok(service.findByNombreOrApellidoIgnoringCase(term));
 	}
 
 	@PostMapping("/crear-con-foto")

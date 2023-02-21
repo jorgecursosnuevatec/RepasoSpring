@@ -7,5 +7,5 @@ import com.jgr.commons.service.CommonService;
 
 public interface AlumnoService extends CommonService<Alumno>{
 	
-	public List<Alumno> findByNombreOrApellido(String term);
+	public List<Alumno> findByNombreOrApellidoIgnoringCase(String term);
 }
