@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-21 EJEMPLOS JPA"
+message="$(date)2023-02-22 AÑADO JSONIGNOREPROPERTIES"
 fi
 
 start=`date +%s`

@@ -12,18 +12,34 @@ import com.jgr.commons.service.CommonServiceImpl;
 import com.jgr.micro.examenes.sql.models.repository.AsignaturaRepository;
 import com.jgr.micro.examenes.sql.models.repository.ExamenRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExamenServiceImpl.
+ */
 @Service
 public class ExamenServiceImpl extends CommonServiceImpl<Examen, ExamenRepository> implements ExamenService {
 
+	/** The asignatura repository. */
 	@Autowired
 	private AsignaturaRepository asignaturaRepository;
 	
+	/**
+	 * Find by nombre.
+	 *
+	 * @param term the term
+	 * @return the list
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<Examen> findByNombre(String term) {
 		return repository.findByNombre(term);
 	}
 
+	/**
+	 * Find all asignaturas.
+	 *
+	 * @return the iterable
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Iterable<Asignatura> findAllAsignaturas() {
