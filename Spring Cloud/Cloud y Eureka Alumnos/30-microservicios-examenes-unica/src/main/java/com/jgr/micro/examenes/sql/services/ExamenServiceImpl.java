@@ -12,14 +12,18 @@ import com.jgr.commons.service.CommonServiceImpl;
 import com.jgr.micro.examenes.sql.models.repository.AsignaturaRepository;
 import com.jgr.micro.examenes.sql.models.repository.ExamenRepository;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ExamenServiceImpl.
+ * El repositorio de examen los importamos del commonserviceimpl,no es necesario porque como heredamos
+ * y le pasamos el examen yel examenrepository
+ * el que tenemos que inyectar es el de asignatura,ya que no lo importamos
  */
 @Service
 public class ExamenServiceImpl extends CommonServiceImpl<Examen, ExamenRepository> implements ExamenService {
 
 	/** The asignatura repository. */
+	
 	@Autowired
 	private AsignaturaRepository asignaturaRepository;
 	

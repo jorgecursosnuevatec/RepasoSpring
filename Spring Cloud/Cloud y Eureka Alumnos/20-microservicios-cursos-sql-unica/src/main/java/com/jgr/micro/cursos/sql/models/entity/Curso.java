@@ -36,9 +36,12 @@ public class Curso {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	
+	
+	//un curso n alumnos
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Alumno> alumnos;
 	
+	//un curso puede tener muchos examenes y un examen a varios cursos
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Examen> examenes;
 

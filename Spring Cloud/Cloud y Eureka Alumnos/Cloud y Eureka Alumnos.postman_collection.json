@@ -30,6 +30,36 @@
 					"response": []
 				},
 				{
+					"name": "ListaAlumnosPaginable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos-sql/pagina?page=0&size=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos-sql",
+								"pagina"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "AlumnoID",
 					"request": {
 						"method": "GET",
@@ -118,7 +148,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idAlumno\": null,\r\n    \"nombre\": \"Nombre1\",\r\n    \"apellido\": \"Apellido1\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"foto\": null\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Nombre5\",\r\n    \"apellido\": \"Apellido5\",\r\n    \"email\": \"Email50@mail.com\",\r\n    \"foto\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -162,6 +192,147 @@
 							"path": [
 								"api",
 								"alumnos-sql",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoModificaConFoto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/D:/Software/FOTOS FONDO/485508.jpg"
+								},
+								{
+									"key": "nombre",
+									"value": "nombrefoto",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "apellidofoto",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "emailfoto4@mail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos-sql/editar-con-foto/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos-sql",
+								"editar-con-foto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoAltaConFoto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/D:/Software/FOTOS FONDO/485508.jpg"
+								},
+								{
+									"key": "nombre",
+									"value": "nombrefoto",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "apellidofoto",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "emailfoto4@mail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos-sql/crear-con-foto",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos-sql",
+								"crear-con-foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoVerFoto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/D:/Software/FOTOS FONDO/485508.jpg"
+								},
+								{
+									"key": "nombre",
+									"value": "nombrefoto",
+									"type": "text"
+								},
+								{
+									"key": "apellido",
+									"value": "apellidofoto",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "emailfoto4@mail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos-sql/uploads/img/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos-sql",
+								"uploads",
+								"img",
 								"1"
 							]
 						}
@@ -295,6 +466,56 @@
 								"cursos",
 								"1",
 								"eliminar-alumno"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQLBuscaCursoId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/cursos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQLAsignarExamenesCurso",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 1,\r\n        \"nombre\": \"Examen1\",\r\n        \"createAt\": \"2023-02-22T06:27:58.000+00:00\",\r\n        \"preguntas\": [\r\n            {\r\n                \"id\": 1,\r\n                \"texto\": \"texto del examen1 pregunta1\"\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"texto\": \"texto del examen1 pregunta2\"\r\n            }\r\n        ],\r\n        \"asignatura\": {\r\n            \"id\": 1,\r\n            \"nombre\": \"Matemáticas\",\r\n            \"padre\": null,\r\n            \"hijos\": [\r\n                {\r\n                    \"id\": 8,\r\n                    \"nombre\": \"Algebra\",\r\n                    \"hijos\": []\r\n                },\r\n                {\r\n                    \"id\": 9,\r\n                    \"nombre\": \"Aritmética\",\r\n                    \"hijos\": []\r\n                },\r\n                {\r\n                    \"id\": 10,\r\n                    \"nombre\": \"Trigonometría\",\r\n                    \"hijos\": []\r\n                }\r\n            ]\r\n        },\r\n        \"respondido\": false\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/cursos/1/asignar-examenes",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								"1",
+								"asignar-examenes"
 							]
 						}
 					},

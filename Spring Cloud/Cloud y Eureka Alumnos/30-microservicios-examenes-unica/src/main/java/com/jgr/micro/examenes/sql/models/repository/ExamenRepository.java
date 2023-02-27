@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.jgr.commons.modelo.asig.exam.preg.Examen;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface ExamenRepository.
  */

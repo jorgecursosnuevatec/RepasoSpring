@@ -6,7 +6,7 @@ import com.jgr.commons.modelo.asig.exam.preg.Asignatura;
 import com.jgr.commons.modelo.asig.exam.preg.Examen;
 import com.jgr.commons.service.CommonService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface ExamenService.
  */

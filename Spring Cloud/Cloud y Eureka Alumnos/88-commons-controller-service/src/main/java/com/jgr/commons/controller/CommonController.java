@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jgr.commons.service.CommonService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CommonController.
  * No le ponemos el @RestController porque lo va
@@ -105,6 +105,7 @@ public class CommonController<E, S extends CommonService<E>> {
 	
 	/**
 	 * Validar.
+	 * Generamos JSON a partir de un mapa con los errores producidos en la validacion
 	 *
 	 * @param result the result
 	 * @return the response entity

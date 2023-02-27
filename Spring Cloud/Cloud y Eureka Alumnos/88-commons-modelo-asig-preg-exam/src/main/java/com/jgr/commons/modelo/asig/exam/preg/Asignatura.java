@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Asignatura.
  */

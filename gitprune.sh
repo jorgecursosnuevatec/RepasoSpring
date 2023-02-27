@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-22 AÑADO JSONIGNOREPROPERTIES"
+message="$(date)2023-02-27 SEGUIR CON RESPUESTAS"
 fi
 
 start=`date +%s`

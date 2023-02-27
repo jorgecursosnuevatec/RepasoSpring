@@ -19,8 +19,6 @@
 		<spring-cloud.version>2021.0.5</spring-cloud.version>
 	</properties>
 
-
-
 	<dependencies>
 		<dependency>
 			<groupId>com.jgr.commons.modelo.asig.exam.preg</groupId>
@@ -111,7 +109,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>

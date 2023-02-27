@@ -36,17 +36,7 @@
 			<artifactId>88-commons-controller-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.jgr.commons.modelo.asig.exam.preg</groupId>
-			<artifactId>88-commons-modelo-asig-preg-exam</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jgr.commons.controller.service</groupId>
-			<artifactId>88-commons-controller-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -66,7 +56,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
