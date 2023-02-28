@@ -138,7 +138,7 @@ public class CommonController<E, S extends CommonService<E>> {
 			+ "DECLARADO EN COMMONS-CONTROLLER-SERVICE")
 	@ApiResponses(value= {
 			@ApiResponse(responseCode="200",description="Encontrado"),
-			@ApiResponse(responseCode="404",description="No Encontrado")
+			@ApiResponse(responseCode="500",description="No existe con ese id")
 	})
 	public ResponseEntity<?> eliminar(@Parameter(description = "id a dar de baja") @PathVariable Long id){
 		service.deleteById(id);

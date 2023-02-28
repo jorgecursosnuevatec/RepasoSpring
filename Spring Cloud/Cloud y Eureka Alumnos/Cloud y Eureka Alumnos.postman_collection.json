@@ -126,7 +126,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8090/api/alumnos-sql/filtrar/apellido0",
+							"raw": "localhost:8090/api/alumnos-sql/filtrar/apellido",
 							"host": [
 								"localhost"
 							],
@@ -135,7 +135,7 @@
 								"api",
 								"alumnos-sql",
 								"filtrar",
-								"apellido0"
+								"apellido"
 							]
 						}
 					},
@@ -372,6 +372,72 @@
 							"path": [
 								"swagger-ui",
 								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoPruebaCache",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAlumno\": 1,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos-sql/cacheAlta/apellido",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos-sql",
+								"cacheAlta",
+								"apellido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AlumnoBajaCache",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAlumno\": 1,\r\n    \"nombre\": \"Nombre0\",\r\n    \"apellidos\": \"Apellido0\",\r\n    \"email\": \"Email0@mail.com\",\r\n    \"createAt\": \"2023-02-11T10:39:54.713+01:00\",\r\n    \"foto\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos-sql/cacheBaja/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos-sql",
+								"cacheBaja",
+								"1"
 							]
 						}
 					},

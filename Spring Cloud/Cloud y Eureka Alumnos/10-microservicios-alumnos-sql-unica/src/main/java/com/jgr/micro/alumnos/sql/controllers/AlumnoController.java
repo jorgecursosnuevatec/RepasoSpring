@@ -1,10 +1,18 @@
 package com.jgr.micro.alumnos.sql.controllers;
 
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+
+import org.slf4j.Logger;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -31,6 +39,7 @@ import io.swagger.v3.oas.annotations.responses.*;
 
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AlumnoController.
  * 
@@ -41,6 +50,9 @@ import io.swagger.v3.oas.annotations.responses.*;
  */
 @RestController
 public class AlumnoController extends CommonController<Alumno, AlumnoService>{
+	
+	/** The Constant log. */
+	private static final Logger log = LoggerFactory.getLogger(AlumnoController.class);
 	
 	/**
 	 * Ver foto.
@@ -54,7 +66,7 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService>{
 	    content = { @Content(mediaType = "image/jpeg")}),
 	  @ApiResponse(responseCode = "400", description = "Invalid id supplied", 
 	    content = @Content), 
-	  @ApiResponse(responseCode = "404", description = "Alumno no existe", 
+	  @ApiResponse(responseCode = "404", description = "Alumno no existe/sin foto", 
 	    content = @Content) })
 	@GetMapping("/uploads/img/{id}")
 	public ResponseEntity<?> verFoto(@PathVariable Long id){
@@ -132,6 +144,71 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService>{
 		return ResponseEntity.ok(service.findByNombreOrApellidoIgnoringCase(term));
 	}
 
+	 /**
+	  * cache.
+	  *PRUEBA CON CACHE,SE DA DE ALTA EL CACHE
+	  * @param term the term
+	  * @return the response entity
+	  * Le añado la notacion @Cacheable y el nombre que le he dado al atributo en CacheConfiguration
+	  * guardaCache
+	  */
+	 @Operation(summary = "Busqueda de alumnos por nombre o apellido USANDO CACHE", 
+			 description = "busqueda de alumno USANDO CACHE ", operationId = "@GetMapping(\"/cacheAlta/{term}\")")
+	 @ApiResponses(value = {
+			 @ApiResponse(responseCode = "200", description = "ok, alumno(s) encontrado(s)",
+					 content = @Content(mediaType ="application/json",
+					 array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))) ,
+			 @ApiResponse(responseCode = "401", description = "Unauthorized"),
+			 @ApiResponse(responseCode = "403", description = "Forbidden"),
+			 @ApiResponse(responseCode = "404", description = "Not found")})
+
+	 @GetMapping("/cacheAlta/{term}")
+	 @Cacheable("guardaCache")
+		 public ResponseEntity<?> altaCache(@Parameter(description = "nombre o apellido a buscar")
+		 @PathVariable String term){
+		 log.error("*********************Entra en ALTA cache********");
+		 return ResponseEntity.ok(service.findByNombreOrApellidoIgnoringCase(term));
+	 }
+	 
+	 /**
+	  * cache.
+	  *PRUEBA CON CACHE,SE DA DE BAJA EL CACHE
+	  * @param term the term
+	  * @return the response entity
+	  * Le añado la notacion @Cacheable y el nombre que le he dado al atributo en CacheConfiguration
+	  * guardaCache
+	  */
+	 @Operation(summary = "Borrado del cache", 
+			 description = "borrado del CACHE ", operationId = "@GetMapping(\"/cacheBaja/{term}\")")
+	 @ApiResponses(value = {
+			 @ApiResponse(responseCode = "200", description = "ok, alumno(s) encontrado(s)",
+					 content = @Content(mediaType ="application/json",
+					 array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))) ,
+			 @ApiResponse(responseCode = "401", description = "Unauthorized"),
+			 @ApiResponse(responseCode = "403", description = "Forbidden"),
+			 @ApiResponse(responseCode = "404", description = "Not found")})
+
+	 @GetMapping("/cacheBaja/{id}")
+	 @Cacheable("guardaCache")
+		 public void bajaCache(@Parameter(description = "nombre o apellido a buscar")
+		 @PathVariable Long id){
+		 log.error("*********************Entra en BORRAR cache********");
+		 
+		 limpiaCache(id);
+		
+	 }
+	 
+	 /**
+ 	 * Limpia cache.
+ 	 */
+ 	@CacheEvict("guardaCache")
+	 public void limpiaCache(Long id) {
+ 		
+		 log.error("*********************Entra en limpiaCache()********");
+		 
+	 }
+
+
 	/**
 	 * Crear con foto.
 	 *
@@ -149,6 +226,7 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService>{
 					 array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))) ,
 			 @ApiResponse(responseCode = "401", description = "Unauthorized"),
 			 @ApiResponse(responseCode = "403", description = "Forbidden"),
+			 @ApiResponse(responseCode = "400", description = "Bad Request, faltan datos"),
 			 @ApiResponse(responseCode = "404", description = "Not found")})	
 	 @PostMapping("/crear-con-foto")
 	 
@@ -178,6 +256,7 @@ public class AlumnoController extends CommonController<Alumno, AlumnoService>{
 			 @ApiResponse(responseCode = "200", description = "ok, modificacion correcta",
 					 content = @Content(mediaType ="application/json",
 					 array = @ArraySchema(schema = @Schema(implementation = Alumno.class)))) ,
+			 @ApiResponse(responseCode = "400", description = "Bad Request, faltan datos"),
 			 @ApiResponse(responseCode = "401", description = "Unauthorized"),
 			 @ApiResponse(responseCode = "403", description = "Forbidden"),
 			 @ApiResponse(responseCode = "404", description = "Not found")})	

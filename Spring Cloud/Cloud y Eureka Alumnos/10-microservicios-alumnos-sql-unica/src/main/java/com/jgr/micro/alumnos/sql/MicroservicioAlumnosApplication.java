@@ -13,6 +13,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * 
  * Documentado como JSON CONTROLLER->localhost:8080/v3/api-docs
  * Documentado como HTML CONTROLLER->http://localhost:8080/swagger-ui/index.html
+ * 
+ * añadido cache
  */
 @EnableEurekaClient
 @SpringBootApplication
