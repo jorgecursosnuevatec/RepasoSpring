@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-21 SEGUIR CON DELEE ALUMNO"
+message="$(date)2023-02-28 SQL UNICO CON PRUEBAS JUNIT"
 fi
 
 git add .
