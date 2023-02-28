@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-28 SQL UNICO CON PRUEBAS JUNIT"
+message="$(date)2023-02-28 DOCUMENTADO MICROSERVICIO ALUMNOS"
 fi
 
 git add .

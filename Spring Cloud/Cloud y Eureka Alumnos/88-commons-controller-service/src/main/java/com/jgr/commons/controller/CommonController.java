@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jgr.commons.service.CommonService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 
 /**
  * The Class CommonController.
@@ -30,6 +36,12 @@ import com.jgr.commons.service.CommonService;
  * 
  * @param <E> the element type
  * @param <S> the generic type
+ * 
+ * GENERAMOS DOCUMENTACION PARA SWAGGER
+ * 
+ * Documentado como JSON CONTROLLER->localhost:8080/v3/api-docs
+ * Documentado como HTML CONTROLLER->http://localhost:8080/swagger-ui/index.html
+ * 
  */
 public class CommonController<E, S extends CommonService<E>> {
 
@@ -44,6 +56,11 @@ public class CommonController<E, S extends CommonService<E>> {
 	 * @return the response entity
 	 */
 	@GetMapping
+	@Operation(summary="Lista de todos los objetos,"
+			+ "DECLARADO EN COMMONS-CONTROLLER-SERVICE")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="200",description="Encontrado")
+	})
 	public ResponseEntity<?> listar(){
 		return ResponseEntity.ok().body(service.findAll());
 	}
@@ -55,7 +72,13 @@ public class CommonController<E, S extends CommonService<E>> {
 	 * @return the response entity
 	 */
 	@GetMapping("/pagina")
-	public ResponseEntity<?> listar(Pageable pageable){
+	@Operation(summary="Lista de la BBDD paginable, customizable con pagina?page=0&size=2"
+			+ "DECLARADO EN COMMONS-CONTROLLER-SERVICE")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="200",description="Encontrado"),
+			@ApiResponse(responseCode="404",description="No Encontrado")
+	})
+	public ResponseEntity<?> listar(@ParameterObject Pageable pageable){
 		return ResponseEntity.ok().body(service.findAll(pageable));
 	}
 	
@@ -66,7 +89,13 @@ public class CommonController<E, S extends CommonService<E>> {
 	 * @return the response entity
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<?> ver(@PathVariable Long id){
+	@Operation(summary="Obtiene el detalle a partir del id que le pasamos como parametro,"
+			+ "DECLARADO EN COMMONS-CONTROLLER-SERVICE")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="200",description="Encontrado"),
+			@ApiResponse(responseCode="404",description="No Encontrado")
+	})
+	public ResponseEntity<?> ver(@Parameter(description = "id del objeto a buscar") @PathVariable Long id){
 		Optional<E> o = service.findById(id);
 		if(o.isEmpty()) {
 			return ResponseEntity.notFound().build();
@@ -82,7 +111,14 @@ public class CommonController<E, S extends CommonService<E>> {
 	 * @return the response entity
 	 */
 	@PostMapping
-	public ResponseEntity<?> crear(@Valid @RequestBody E entity, BindingResult result){
+	@Operation(summary="Alta de la entidad,"
+			+ "DECLARADO EN COMMONS-CONTROLLER-SERVICE")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="200",description="Encontrado")
+	
+	})
+	public ResponseEntity<?> crear(@Parameter(description = "objeto a dar de alta") 
+			@Valid @RequestBody E entity, BindingResult result){
 		
 		if(result.hasErrors()) {
 			return this.validar(result);
@@ -98,7 +134,13 @@ public class CommonController<E, S extends CommonService<E>> {
 	 * @return the response entity
 	 */
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> eliminar(@PathVariable Long id){
+	@Operation(summary="Borra el elemento con el id que le pasamos como parametro,"
+			+ "DECLARADO EN COMMONS-CONTROLLER-SERVICE")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="200",description="Encontrado"),
+			@ApiResponse(responseCode="404",description="No Encontrado")
+	})
+	public ResponseEntity<?> eliminar(@Parameter(description = "id a dar de baja") @PathVariable Long id){
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}

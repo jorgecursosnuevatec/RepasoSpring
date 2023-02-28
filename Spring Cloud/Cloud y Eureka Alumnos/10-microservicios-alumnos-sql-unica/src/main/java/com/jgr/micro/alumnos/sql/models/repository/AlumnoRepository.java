@@ -8,7 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import com.jgr.commons.modelo.alumnos.Alumno;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface AlumnoRepository.
  * heredeamos de pagingandsorting 
