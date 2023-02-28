@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jgr.micro.respuestas.sql.models.entity.Respuesta;
 import com.jgr.micro.respuestas.sql.services.RespuestaService;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class RespuestaController.
  */

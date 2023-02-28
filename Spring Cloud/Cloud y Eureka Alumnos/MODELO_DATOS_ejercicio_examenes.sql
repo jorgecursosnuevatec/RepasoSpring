@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2023 a las 19:13:41
+-- Tiempo de generación: 28-02-2023 a las 07:48:27
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -30,7 +29,6 @@ USE `ejercicio_examenes`;
 -- Estructura de tabla para la tabla `alumnos`
 --
 -- Creación: 22-02-2023 a las 05:43:45
--- Última actualización: 27-02-2023 a las 18:10:00
 --
 
 DROP TABLE IF EXISTS `alumnos`;
@@ -122,6 +120,7 @@ INSERT INTO `asignaturas` (`id`, `nombre`, `padre_id`) VALUES
 -- Estructura de tabla para la tabla `cursos`
 --
 -- Creación: 22-02-2023 a las 05:43:49
+-- Última actualización: 28-02-2023 a las 05:50:04
 --
 
 DROP TABLE IF EXISTS `cursos`;
@@ -130,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `cursos` (
   `create_at` datetime(6) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- RELACIONES PARA LA TABLA `cursos`:
@@ -141,7 +140,8 @@ CREATE TABLE IF NOT EXISTS `cursos` (
 --
 
 INSERT INTO `cursos` (`id`, `create_at`, `nombre`) VALUES
-(1, '2023-02-22 06:46:30.000000', 'NombreCurso0');
+(1, '2023-02-22 06:46:30.000000', 'NombreCurso0'),
+(2, '2023-02-28 06:50:04.000000', 'NombreCurso2');
 
 -- --------------------------------------------------------
 
@@ -149,6 +149,7 @@ INSERT INTO `cursos` (`id`, `create_at`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `cursos_alumnos`
 --
 -- Creación: 22-02-2023 a las 05:43:50
+-- Última actualización: 28-02-2023 a las 05:50:04
 --
 
 DROP TABLE IF EXISTS `cursos_alumnos`;
@@ -173,7 +174,9 @@ CREATE TABLE IF NOT EXISTS `cursos_alumnos` (
 
 INSERT INTO `cursos_alumnos` (`Curso_id`, `alumnos_id`) VALUES
 (1, 1),
-(1, 3);
+(1, 3),
+(2, 2),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -181,7 +184,7 @@ INSERT INTO `cursos_alumnos` (`Curso_id`, `alumnos_id`) VALUES
 -- Estructura de tabla para la tabla `cursos_examenes`
 --
 -- Creación: 22-02-2023 a las 05:43:50
--- Última actualización: 27-02-2023 a las 17:13:31
+-- Última actualización: 28-02-2023 a las 05:50:04
 --
 
 DROP TABLE IF EXISTS `cursos_examenes`;
@@ -205,7 +208,8 @@ CREATE TABLE IF NOT EXISTS `cursos_examenes` (
 --
 
 INSERT INTO `cursos_examenes` (`Curso_id`, `examenes_id`) VALUES
-(1, 1);
+(1, 1),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -213,6 +217,7 @@ INSERT INTO `cursos_examenes` (`Curso_id`, `examenes_id`) VALUES
 -- Estructura de tabla para la tabla `examenes`
 --
 -- Creación: 22-02-2023 a las 05:43:51
+-- Última actualización: 28-02-2023 a las 05:43:21
 --
 
 DROP TABLE IF EXISTS `examenes`;
@@ -223,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `examenes` (
   `asignatura_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK6ti4mhut3mays6044rt8syqd8` (`asignatura_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- RELACIONES PARA LA TABLA `examenes`:
@@ -236,7 +241,8 @@ CREATE TABLE IF NOT EXISTS `examenes` (
 --
 
 INSERT INTO `examenes` (`id`, `create_at`, `nombre`, `asignatura_id`) VALUES
-(1, '2023-02-22 07:27:58.000000', 'Examen1', 1);
+(1, '2023-02-22 07:27:58.000000', 'Examen1', 1),
+(2, '2023-02-28 06:43:20.000000', 'Examen2', 1);
 
 -- --------------------------------------------------------
 
@@ -244,6 +250,7 @@ INSERT INTO `examenes` (`id`, `create_at`, `nombre`, `asignatura_id`) VALUES
 -- Estructura de tabla para la tabla `preguntas`
 --
 -- Creación: 22-02-2023 a las 05:43:51
+-- Última actualización: 28-02-2023 a las 05:43:21
 --
 
 DROP TABLE IF EXISTS `preguntas`;
@@ -253,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
   `examen_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK9hlw51x7hfqs1tv3sviwqycqi` (`examen_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- RELACIONES PARA LA TABLA `preguntas`:
@@ -267,7 +274,9 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
 
 INSERT INTO `preguntas` (`id`, `texto`, `examen_id`) VALUES
 (1, 'texto del examen1 pregunta1', 1),
-(2, 'texto del examen1 pregunta2', 1);
+(2, 'texto del examen1 pregunta2', 1),
+(3, 'texto del examen2 pregunta1', 2),
+(4, 'texto del examen2 pregunta2', 2);
 
 -- --------------------------------------------------------
 
@@ -275,6 +284,7 @@ INSERT INTO `preguntas` (`id`, `texto`, `examen_id`) VALUES
 -- Estructura de tabla para la tabla `respuestas`
 --
 -- Creación: 22-02-2023 a las 05:43:56
+-- Última actualización: 28-02-2023 a las 06:23:36
 --
 
 DROP TABLE IF EXISTS `respuestas`;
@@ -286,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
   PRIMARY KEY (`id`),
   KEY `FKmcisxf21kv5io47mvg6b1l7nm` (`alumno_id`),
   KEY `FKptndav2td8pqi7e51ihgq95gp` (`pregunta_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- RELACIONES PARA LA TABLA `respuestas`:
@@ -295,6 +305,14 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
 --   `pregunta_id`
 --       `preguntas` -> `id`
 --
+
+--
+-- Volcado de datos para la tabla `respuestas`
+--
+
+INSERT INTO `respuestas` (`id`, `texto`, `alumno_id`, `pregunta_id`) VALUES
+(1, 'RESPUESTA AL examen1 pregunta1 ALUMNO 1', 1, 1),
+(2, 'RESPUESTA AL examen1 pregunta2 ALUMNO3', 3, 2);
 
 --
 -- Restricciones para tablas volcadas
@@ -338,77 +356,6 @@ ALTER TABLE `preguntas`
 ALTER TABLE `respuestas`
   ADD CONSTRAINT `FKmcisxf21kv5io47mvg6b1l7nm` FOREIGN KEY (`alumno_id`) REFERENCES `alumnos` (`id`),
   ADD CONSTRAINT `FKptndav2td8pqi7e51ihgq95gp` FOREIGN KEY (`pregunta_id`) REFERENCES `preguntas` (`id`);
-
-
---
--- Metadatos
---
-USE `phpmyadmin`;
-
---
--- Metadatos para la tabla alumnos
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla asignaturas
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla cursos
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla cursos_alumnos
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla cursos_examenes
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla examenes
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla preguntas
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la tabla respuestas
---
--- Error leyendo datos de la tabla phpmyadmin.pma__column_info: #1100 - Tabla &#039;pma__column_info&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__table_uiprefs: #1100 - Tabla &#039;pma__table_uiprefs&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__tracking: #1100 - Tabla &#039;pma__tracking&#039; no fue trabada con LOCK TABLES
-
---
--- Metadatos para la base de datos ejercicio_examenes
---
--- Error leyendo datos de la tabla phpmyadmin.pma__bookmark: #1100 - Tabla &#039;pma__bookmark&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__relation: #1100 - Tabla &#039;pma__relation&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__savedsearches: #1100 - Tabla &#039;pma__savedsearches&#039; no fue trabada con LOCK TABLES
--- Error leyendo datos de la tabla phpmyadmin.pma__central_columns: #1100 - Tabla &#039;pma__central_columns&#039; no fue trabada con LOCK TABLES
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

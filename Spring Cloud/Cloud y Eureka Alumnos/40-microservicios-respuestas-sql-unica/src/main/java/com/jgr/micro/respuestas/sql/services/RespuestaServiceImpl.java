@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jgr.micro.respuestas.sql.models.entity.Respuesta;
 import com.jgr.micro.respuestas.sql.models.repository.RespuestaRepository;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class RespuestaServiceImpl.
  */

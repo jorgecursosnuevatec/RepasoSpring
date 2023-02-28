@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-27 SEGUIR CON RESPUESTAS"
+message="$(date)2023-02-28 FIN SQL BASE DATOS UNICA"
 fi
 
 start=`date +%s`

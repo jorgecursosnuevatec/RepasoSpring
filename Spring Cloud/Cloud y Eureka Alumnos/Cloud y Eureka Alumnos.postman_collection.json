@@ -390,7 +390,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": null,\r\n    \"nombre\": \"NombreCurso0\",\r\n    \"alumnos\": [],\r\n    \"examenes\":[]\r\n}",
+							"raw": "{\r\n    \"id\": null,\r\n    \"nombre\": \"NombreCurso2\",\r\n    \"alumnos\": [\r\n        {\r\n            \"id\": 2,\r\n            \"nombre\": \"Nombre1\",\r\n            \"apellido\": \"Apellido1\",\r\n            \"email\": \"Email0@mail.com\",\r\n            \"createAt\": \"2023-02-22T05:46:06.000+00:00\",\r\n            \"fotoHashCode\": null\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"nombre\": \"Nombre4\",\r\n            \"apellido\": \"Apellido\",\r\n            \"email\": \"Email40@mail.com\",\r\n            \"createAt\": \"2023-02-27T17:49:58.000+00:00\",\r\n            \"fotoHashCode\": null\r\n        }\r\n    ],\r\n    \"examenes\": [\r\n        {\r\n            \"id\": 2,\r\n            \"nombre\": \"Examen2\",\r\n            \"createAt\": \"2023-02-28T05:43:20.952+00:00\",\r\n            \"preguntas\": [\r\n                {\r\n                    \"id\": 3,\r\n                    \"texto\": \"texto del examen2 pregunta1\"\r\n                },\r\n                {\r\n                    \"id\": 4,\r\n                    \"texto\": \"texto del examen2 pregunta2\"\r\n                }\r\n            ],\r\n            \"asignatura\": {\r\n                \"id\": 1,\r\n                \"nombre\": \"Matemáticas\",\r\n                \"padre\": null,\r\n                \"hijos\": [\r\n                    {\r\n                        \"id\": 8,\r\n                        \"nombre\": \"Algebra\",\r\n                        \"hijos\": []\r\n                    },\r\n                    {\r\n                        \"id\": 9,\r\n                        \"nombre\": \"Aritmética\",\r\n                        \"hijos\": []\r\n                    },\r\n                    {\r\n                        \"id\": 10,\r\n                        \"nombre\": \"Trigonometría\",\r\n                        \"hijos\": []\r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -520,6 +520,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "RespuestasAlumnoCurso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/cursos/alumno/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								"alumno",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -552,7 +573,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Examen1\",\r\n    \"preguntas\": [\r\n        {\"texto\":\"texto del examen1 pregunta1\"},\r\n        {\"texto\":\"texto del examen1 pregunta2\"}\r\n    ],  \r\n    \"asignatura\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Matemáticas\",\r\n        \"padre\": null,\r\n        \"hijos\": [\r\n            {\r\n                \"id\": 8,\r\n                \"nombre\": \"Algebra\",\r\n                \"hijos\": []\r\n            },\r\n            {\r\n                \"id\": 9,\r\n                \"nombre\": \"Aritmética\",\r\n                \"hijos\": []\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"nombre\": \"Trigonometría\",\r\n                \"hijos\": []\r\n            }\r\n        ]\r\n    }\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Examen2\",\r\n    \"preguntas\": [\r\n        {\"texto\":\"texto del examen2 pregunta1\"},\r\n        {\"texto\":\"texto del examen2 pregunta2\"}\r\n    ],  \r\n    \"asignatura\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Matemáticas\",\r\n        \"padre\": null,\r\n        \"hijos\": [\r\n            {\r\n                \"id\": 8,\r\n                \"nombre\": \"Algebra\",\r\n                \"hijos\": []\r\n            },\r\n            {\r\n                \"id\": 9,\r\n                \"nombre\": \"Aritmética\",\r\n                \"hijos\": []\r\n            },\r\n            {\r\n                \"id\": 10,\r\n                \"nombre\": \"Trigonometría\",\r\n                \"hijos\": []\r\n            }\r\n        ]\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -588,6 +609,85 @@
 								"api",
 								"examenes",
 								"asignaturas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Respuestas",
+			"item": [
+				{
+					"name": "AsignarRespuestas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"texto\": \"RESPUESTA AL examen1 pregunta1 ALUMNO 1\",\r\n        \"alumno\": {\r\n            \"id\": 1,\r\n            \"nombre\": \"nombrefoto\",\r\n            \"apellido\": \"apellidofoto\",\r\n            \"email\": \"emailfoto4@mail.com\",\r\n            \"createAt\": \"2023-02-22T05:45:48.000+00:00\",\r\n            \"fotoHashCode\": 1013914582\r\n        },\r\n        \"pregunta\": {\r\n            \"id\": 1,\r\n            \"texto\": \"texto del examen1 pregunta1\"\r\n        }\r\n    },\r\n    {\r\n        \"texto\": \"RESPUESTA AL examen1 pregunta2 ALUMNO3\",\r\n        \"alumno\": {\r\n            \"id\": 3,\r\n            \"nombre\": \"Nombre2\",\r\n            \"apellido\": \"Apellido2\",\r\n            \"email\": \"Email0@mail2.com\",\r\n            \"createAt\": \"2023-02-22T05:46:57.000+00:00\",\r\n            \"fotoHashCode\": null\r\n        },\r\n        \"pregunta\": {\r\n            \"id\": 2,\r\n            \"texto\": \"texto del examen1 pregunta2\"\r\n        }\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/respuestas/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"respuestas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RespuestasAlumnoExamen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/respuestas/alumno/1/examen/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"respuestas",
+								"alumno",
+								"1",
+								"examen",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RespuestasPorAlumno",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/respuestas/alumno/3/examenes-respondidos",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"respuestas",
+								"alumno",
+								"3",
+								"examenes-respondidos"
 							]
 						}
 					},

@@ -13,7 +13,7 @@ import com.jgr.commons.modelo.alumnos.Alumno;
 import com.jgr.commons.modelo.asig.exam.preg.Pregunta;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Respuesta.
  */
@@ -32,7 +32,7 @@ public class Respuesta {
 	
 	 //da error al consultar los atributos porque no puede deserializarlos,por eso el ignore properties
 	 //https://www.udemy.com/course/microservicios-spring-cloud-y-angular-9/learn/lecture/17303344#questions/11766242
-	/** The alumno. */
+	/** The alumno. muchas respuestas un alumno*/
 	 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Alumno alumno;
@@ -41,7 +41,7 @@ public class Respuesta {
 	 //da error al consultar los atributos porque no puede deserializarlos,por eso el ignore properties
 	 //https://www.udemy.com/course/microservicios-spring-cloud-y-angular-9/learn/lecture/17303344#questions/11766242
 	 
-	/** The pregunta. */
+	/** The pregunta. una pregunta una respuesta*/
 	 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToOne(fetch = FetchType.LAZY)
 	private Pregunta pregunta;

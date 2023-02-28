@@ -21,6 +21,7 @@
 	</properties>
 
 	<dependencies>
+	<!-- relacion con el modelo de datos de alumnos y asignaturas -->
 		<dependency>
 			<groupId>com.jgr.commons.modelo.alumnos</groupId>
 			<artifactId>88-commons-modelo-alumnos</artifactId>

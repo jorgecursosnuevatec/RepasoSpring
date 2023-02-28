@@ -2,7 +2,7 @@ package com.jgr.micro.respuestas.sql.services;
 
 import com.jgr.micro.respuestas.sql.models.entity.Respuesta;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface RespuestaService.
  */
