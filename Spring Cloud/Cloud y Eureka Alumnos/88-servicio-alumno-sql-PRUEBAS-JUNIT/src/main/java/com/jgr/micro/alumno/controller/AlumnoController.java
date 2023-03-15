@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.jgr.controller.generico.ControladorGenerico;
+import com.jgr.commons.controller.CommonController;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.service.IAlumnoService;
 
@@ -42,7 +42,7 @@ import com.jgr.micro.alumno.service.IAlumnoService;
  * 
  */
 @RestController
-public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService>{
+public class AlumnoController extends  CommonController <Alumno,IAlumnoService>{
 
 	/** The Constant log. */
 	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AlumnoController.class);
@@ -63,7 +63,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 			al.setNombre("Nombre" + i);
 			al.setApellidos("Apellido" + i);
 			al.setEmail("Email" + i + "@mail.com");
-			servicioDeGenericoService.save(al);
+			 service.save(al);
 			alumnosLista.add(al);
 		}
 
@@ -74,7 +74,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 	@GetMapping("nombre/{nombreAlumno}")
 	public ResponseEntity<?> findByNombreLikeIgnoreCase(@PathVariable String nombreAlumno) {
 
-		List<Alumno> al = (List<Alumno>) servicioDeGenericoService.findByNombreContainsIgnoreCase(nombreAlumno);
+		List<Alumno> al = (List<Alumno>)  service.findByNombreContainsIgnoreCase(nombreAlumno);
 
 		if (al.size() > 0) {
 			return ResponseEntity.ok(al);
@@ -88,7 +88,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 	@PutMapping("/{id}")
 	public ResponseEntity<?> actualizaAlumno(@RequestBody Alumno al, @PathVariable Long id) {
 
-		Optional<Alumno> o = servicioDeGenericoService.findById(id);
+		Optional<Alumno> o =  service.findById(id);
 
 		if (!o.isPresent()) {
 			log.debug("Microservicio Alumno->actualizaAlumno");
@@ -101,7 +101,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 		alDb.setApellidos(al.getApellidos());
 		alDb.setEmail(al.getEmail());
 
-		return ResponseEntity.ok().body(servicioDeGenericoService.save(alDb));
+		return ResponseEntity.ok().body( service.save(alDb));
 
 	}
 
@@ -109,7 +109,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 	@GetMapping("/nombreoapellido/{term}")
 	public ResponseEntity<?> buscaNombreOrApellido(@PathVariable String term) {
 
-		List<Alumno> alumnos = (List<Alumno>) servicioDeGenericoService.buscaNombreOApellido(term);
+		List<Alumno> alumnos = (List<Alumno>)  service.buscaNombreOApellido(term);
 
 		if (alumnos.size() > 0) {
 			return ResponseEntity.ok().body(alumnos);
@@ -124,7 +124,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 	public ResponseEntity<?> findByNombreOrApellidosContainingIgnoreCase(@PathVariable String nombre,
 			@PathVariable String apellido) {
 
-		List<Alumno> alumnos = (List<Alumno>) servicioDeGenericoService
+		List<Alumno> alumnos = (List<Alumno>) service
 				.findByNombreContainingIgnoreCaseOrApellidosContainingIgnoreCase(nombre, apellido);
 
 		if (alumnos.size() > 0) {
@@ -140,7 +140,7 @@ public class AlumnoController extends ControladorGenerico <Alumno,IAlumnoService
 	@GetMapping("/uploads/img/{id}")
 	public ResponseEntity<?> verFoto(@PathVariable Long id) {
 
-		Optional<Alumno> o = servicioDeGenericoService.findById(id);
+		Optional<Alumno> o =  service.findById(id);
 
 		if (o.isEmpty() || o.get().getFoto() == null) {
 			return ResponseEntity.notFound().build();

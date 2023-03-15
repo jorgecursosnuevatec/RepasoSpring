@@ -94,23 +94,18 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		<!-- capa de SERVICIO del servicio generico jpa -->
-		<dependency>
-			<groupId>com.jgr.servicio.jpa</groupId>
-			<artifactId>88-generico-jpa-sql</artifactId>
-			<version>V1</version>
-		</dependency>
+
 		<!-- capa de CONTROLADOR del servicio generico jpa -->
 		<dependency>
-			<groupId>com.jgr.controller.generico</groupId>
-			<artifactId>88-generico-controller</artifactId>
-			<version>V1</version>
+			<groupId>com.jgr.commons.controller.service</groupId>
+			<artifactId>88-commons-controller-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- modelo datos alumno -->
 		<dependency>
-			<groupId>com.jgr.model.sql.alumno</groupId>
-			<artifactId>88-generico-entidad-alumno-sql</artifactId>
-			<version>V1</version>
+			<groupId>com.jgr.commons.modelo.alumnos</groupId>
+			<artifactId>88-commons-modelo-alumnos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

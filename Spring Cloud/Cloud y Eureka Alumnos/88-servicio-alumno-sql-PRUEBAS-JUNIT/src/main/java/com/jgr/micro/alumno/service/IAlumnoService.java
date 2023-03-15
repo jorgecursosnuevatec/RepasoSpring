@@ -1,7 +1,8 @@
 package com.jgr.micro.alumno.service;
 
+import com.jgr.commons.service.CommonService;
 import com.jgr.micro.alumno.entity.Alumno;
-import com.jgr.servicio.generico.service.IServiceGenerico;
+
 
 
 /**
@@ -10,7 +11,7 @@ import com.jgr.servicio.generico.service.IServiceGenerico;
  * a usar
  */
 
-public interface IAlumnoService extends IServiceGenerico<Alumno>{
+public interface IAlumnoService extends  CommonService<Alumno>{
 
 		
 	public Iterable<Alumno> findByNombreContainsIgnoreCase(String nombreAlumno);

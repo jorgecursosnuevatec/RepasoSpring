@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jgr.commons.service.CommonServiceImpl;
 import com.jgr.micro.alumno.entity.Alumno;
 import com.jgr.micro.alumno.repository.IAlumnoRepository;
-import com.jgr.servicio.generico.service.ServiceGenericoImpl;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /** The Constant log. */
 @Slf4j // log lombok
-public class AlumnoServiceImpl extends ServiceGenericoImpl<Alumno,IAlumnoRepository> 
+public class AlumnoServiceImpl extends  CommonServiceImpl<Alumno,IAlumnoRepository> 
 implements IAlumnoService {
 
 	/** The i alumno repository. */
