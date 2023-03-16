@@ -20,7 +20,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-02-28 DOCUMENTADO MICROSERVICIO ALUMNOS"
+message="$(date)2023-03-16 CAMBIAMOS USUARIO POR ROOT PARA QUE FUNCIONE CON DOCKER"
 fi
 
 git add .
